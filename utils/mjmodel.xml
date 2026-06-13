@@ -1,0 +1,845 @@
+<mujoco model="base">
+  <compiler angle="radian" meshdir="meshes/"/>
+  <extension>
+    <plugin plugin="mujoco.sensor.touch_grid"/>
+  </extension>
+  <option impratio="20" density="1.2" viscosity="2e-05" cone="elliptic"/>
+  <option timestep="0.002"/>
+  <size njmax="5000" nconmax="5000"/>
+  <visual>
+    <map znear="0.001"/>
+  </visual>
+  <default>
+    <default class="objects">
+      <mesh scale=" 0.0008061868541316636 0.0008061868541316636 0.0008061868541316636"/>
+    </default>
+    <default class="2f85">
+      <mesh scale="0.001 0.001 0.001"/>
+      <general biastype="affine"/>
+      <joint axis="1 0 0"/>
+      <default class="driver">
+        <joint range="0 0.8" armature="0.005" damping="0.25" solimplimit="0.95 0.99 0.001" solreflimit="0.005 1"/>
+      </default>
+      <default class="follower">
+        <joint range="-0.872664 0.872664" pos="0 -0.018 0.0065" solimplimit="0.95 0.99 0.001" solreflimit="0.005 1" armature="0.001" damping="0.08" frictionloss="0.015"/>
+      </default>
+      <default class="spring_link">
+        <joint range="-0.29670597283 0.8" stiffness="1.0" springref="2.62" damping="0.05" armature="0.001" frictionloss="0.015"/>
+      </default>
+      <default class="coupler">
+        <joint range="-1.57 0" solimplimit="0.95 0.99 0.001" solreflimit="0.005 1" armature="0.001" damping="0.08" frictionloss="0.015"/>
+      </default>
+      <default class="visual">
+        <geom type="mesh" contype="0" conaffinity="0" group="2"/>
+      </default>
+      <default class="collision">
+        <geom type="mesh" group="5"/>
+        <default class="pad"> <geom mass="0" type="box" friction="0.9" solimp="0.98 0.99 0.001" solref="0.004 1" priority="1" rgba="0 0 0 0"/> </default>
+      </default>
+    </default>
+  </default>
+  
+
+    <asset>
+    <material name="metal" rgba="0.58 0.58 0.58 1"/>
+    <material name="silicone" rgba="0.1882 0.1882 0.1882 1"/>
+    <material name="gray" rgba="0.4627 0.4627 0.4627 1"/>
+    <material name="black" rgba="0.149 0.149 0.149 1"/>
+
+    <mesh class="2f85" file="G:\DPPO\tactile_envs-main\tactile_envs\assets\insertion\assets/base_mount.stl"/>
+    <mesh class="2f85" file="G:\DPPO\tactile_envs-main\tactile_envs\assets\insertion\assets/base.stl"/>
+    <mesh class="2f85" file="G:\DPPO\tactile_envs-main\tactile_envs\assets\insertion\assets/driver.stl"/>
+    <mesh class="2f85" file="G:\DPPO\tactile_envs-main\tactile_envs\assets\insertion\assets/coupler.stl"/>
+    <mesh class="2f85" file="G:\DPPO\tactile_envs-main\tactile_envs\assets\insertion\assets/follower.stl"/>
+    <mesh class="2f85" file="G:\DPPO\tactile_envs-main\tactile_envs\assets\insertion\assets/pad.stl"/>
+    <mesh class="2f85" file="G:\DPPO\tactile_envs-main\tactile_envs\assets\insertion\assets/silicone_pad.stl"/>
+    <mesh class="2f85" file="G:\DPPO\tactile_envs-main\tactile_envs\assets\insertion\assets/spring_link.stl"/>
+
+    <material name="robot0_Black" shininess="0.25" rgba="0.033102 0.033102 0.033102 1"/>
+    <material name="robot0_JointGrey" shininess="0.25" rgba="0.278431 0.278431 0.278431 1"/>
+    <material name="robot0_LinkGrey" shininess="0.25" rgba="0.820392 0.820392 0.820392 1"/>
+    <material name="robot0_URBlue" shininess="0.25" rgba="0.490196 0.678431 0.8 1"/>
+    <material name="floor_mat" specular="0.1" shininess="0.1"/>
+    <material name="wall_mat" specular="0.2" shininess="0.2"/>
+    <material name="ceiling_mat" specular="0.1" shininess="0.1"/>
+    <mesh name="robot0_base_vis_0" content_type="model/obj" file="G:\DPPO\robosuite\models\assets\robots\ur5e\obj_meshes/base_vis/base_vis_0.obj"/>
+    <mesh name="robot0_base_vis_1" content_type="model/obj" file="G:\DPPO\robosuite\models\assets\robots\ur5e\obj_meshes/base_vis/base_vis_1.obj"/>
+    <mesh name="robot0_forearm_vis_0" content_type="model/obj" file="G:\DPPO\robosuite\models\assets\robots\ur5e\obj_meshes/forearm_vis/forearm_vis_0.obj"/>
+    <mesh name="robot0_forearm_vis_1" content_type="model/obj" file="G:\DPPO\robosuite\models\assets\robots\ur5e\obj_meshes/forearm_vis/forearm_vis_1.obj"/>
+    <mesh name="robot0_forearm_vis_2" content_type="model/obj" file="G:\DPPO\robosuite\models\assets\robots\ur5e\obj_meshes/forearm_vis/forearm_vis_2.obj"/>
+    <mesh name="robot0_forearm_vis_3" content_type="model/obj" file="G:\DPPO\robosuite\models\assets\robots\ur5e\obj_meshes/forearm_vis/forearm_vis_3.obj"/>
+    <mesh name="robot0_shoulder_vis_0" content_type="model/obj" file="G:\DPPO\robosuite\models\assets\robots\ur5e\obj_meshes/shoulder_vis/shoulder_vis_0.obj"/>
+    <mesh name="robot0_shoulder_vis_1" content_type="model/obj" file="G:\DPPO\robosuite\models\assets\robots\ur5e\obj_meshes/shoulder_vis/shoulder_vis_1.obj"/>
+    <mesh name="robot0_shoulder_vis_2" content_type="model/obj" file="G:\DPPO\robosuite\models\assets\robots\ur5e\obj_meshes/shoulder_vis/shoulder_vis_2.obj"/>
+    <mesh name="robot0_upperarm_vis_0" content_type="model/obj" file="G:\DPPO\robosuite\models\assets\robots\ur5e\obj_meshes/upperarm_vis/upperarm_vis_0.obj"/>
+    <mesh name="robot0_upperarm_vis_1" content_type="model/obj" file="G:\DPPO\robosuite\models\assets\robots\ur5e\obj_meshes/upperarm_vis/upperarm_vis_1.obj"/>
+    <mesh name="robot0_upperarm_vis_2" content_type="model/obj" file="G:\DPPO\robosuite\models\assets\robots\ur5e\obj_meshes/upperarm_vis/upperarm_vis_2.obj"/>
+    <mesh name="robot0_upperarm_vis_3" content_type="model/obj" file="G:\DPPO\robosuite\models\assets\robots\ur5e\obj_meshes/upperarm_vis/upperarm_vis_3.obj"/>
+    <mesh name="robot0_wrist1_vis_0" content_type="model/obj" file="G:\DPPO\robosuite\models\assets\robots\ur5e\obj_meshes/wrist1_vis/wrist1_vis_0.obj"/>
+    <mesh name="robot0_wrist1_vis_1" content_type="model/obj" file="G:\DPPO\robosuite\models\assets\robots\ur5e\obj_meshes/wrist1_vis/wrist1_vis_1.obj"/>
+    <mesh name="robot0_wrist1_vis_2" content_type="model/obj" file="G:\DPPO\robosuite\models\assets\robots\ur5e\obj_meshes/wrist1_vis/wrist1_vis_2.obj"/>
+    <mesh name="robot0_wrist2_vis_0" content_type="model/obj" file="G:\DPPO\robosuite\models\assets\robots\ur5e\obj_meshes/wrist2_vis/wrist2_vis_0.obj"/>
+    <mesh name="robot0_wrist2_vis_1" content_type="model/obj" file="G:\DPPO\robosuite\models\assets\robots\ur5e\obj_meshes/wrist2_vis/wrist2_vis_1.obj"/>
+    <mesh name="robot0_wrist2_vis_2" content_type="model/obj" file="G:\DPPO\robosuite\models\assets\robots\ur5e\obj_meshes/wrist2_vis/wrist2_vis_2.obj"/>
+    <mesh name="robot0_wrist3_vis" content_type="model/obj" file="G:\DPPO\robosuite\models\assets\robots\ur5e\obj_meshes/wrist3_vis/wrist3_vis.obj"/>
+    <mesh name="robot0_base" content_type="model/stl" file="G:\DPPO\robosuite\models\assets\robots\ur5e\meshes/base.stl"/>
+    <mesh name="robot0_shoulder" content_type="model/stl" file="G:\DPPO\robosuite\models\assets\robots\ur5e\meshes/shoulder.stl"/>
+    <mesh name="robot0_upperarm" content_type="model/stl" file="G:\DPPO\robosuite\models\assets\robots\ur5e\meshes/upperarm.stl"/>
+    <mesh name="robot0_forearm" content_type="model/stl" file="G:\DPPO\robosuite\models\assets\robots\ur5e\meshes/forearm.stl"/>
+    <mesh name="robot0_wrist1" content_type="model/stl" file="G:\DPPO\robosuite\models\assets\robots\ur5e\meshes/wrist1.stl"/>
+    <mesh name="robot0_wrist2" content_type="model/stl" file="G:\DPPO\robosuite\models\assets\robots\ur5e\meshes/wrist2.stl"/>
+    <mesh name="robot0_wrist3" content_type="model/stl" file="G:\DPPO\robosuite\models\assets\robots\ur5e\meshes/wrist3.stl"/>
+    <mesh name="square" class="objects" content_type="model/stl" file="G:\DPPO\tactile_envs-main\tactile_envs\assets\insertion\assets/square.stl"/>
+    <mesh name="square_wall1" class="objects" content_type="model/stl" file="G:\DPPO\tactile_envs-main\tactile_envs\assets\insertion\assets/square_wall1.stl"/>
+    <mesh name="square_wall2" class="objects" content_type="model/stl" file="G:\DPPO\tactile_envs-main\tactile_envs\assets\insertion\assets/square_wall2.stl"/>
+    <mesh name="square_wall3" class="objects" content_type="model/stl" file="G:\DPPO\tactile_envs-main\tactile_envs\assets\insertion\assets/square_wall3.stl"/>
+    <mesh name="square_wall4" class="objects" content_type="model/stl" file="G:\DPPO\tactile_envs-main\tactile_envs\assets\insertion\assets/square_wall4.stl"/>
+    <mesh name="triangle" class="objects" content_type="model/stl" file="G:\DPPO\tactile_envs-main\tactile_envs\assets\insertion\assets/triangle.stl"/>
+    <mesh name="triangle_wall1" class="objects" content_type="model/stl" file="G:\DPPO\tactile_envs-main\tactile_envs\assets\insertion\assets/triangle_wall1.stl"/>
+    <mesh name="triangle_wall2" class="objects" content_type="model/stl" file="G:\DPPO\tactile_envs-main\tactile_envs\assets\insertion\assets/triangle_wall2.stl"/>
+    <mesh name="triangle_wall3" class="objects" content_type="model/stl" file="G:\DPPO\tactile_envs-main\tactile_envs\assets\insertion\assets/triangle_wall3.stl"/>
+    <mesh name="triangle_wall4" class="objects" content_type="model/stl" file="G:\DPPO\tactile_envs-main\tactile_envs\assets\insertion\assets/triangle_wall4.stl"/>
+    <mesh name="horizontal" class="objects" content_type="model/stl" file="G:\DPPO\tactile_envs-main\tactile_envs\assets\insertion\assets/horizontal.stl"/>
+    <mesh name="horizontal_wall1" class="objects" content_type="model/stl" file="G:\DPPO\tactile_envs-main\tactile_envs\assets\insertion\assets/horizontal_wall1.stl"/>
+    <mesh name="horizontal_wall2" class="objects" content_type="model/stl" file="G:\DPPO\tactile_envs-main\tactile_envs\assets\insertion\assets/horizontal_wall2.stl"/>
+    <mesh name="horizontal_wall3" class="objects" content_type="model/stl" file="G:\DPPO\tactile_envs-main\tactile_envs\assets\insertion\assets/horizontal_wall3.stl"/>
+    <mesh name="horizontal_wall4" class="objects" content_type="model/stl" file="G:\DPPO\tactile_envs-main\tactile_envs\assets\insertion\assets/horizontal_wall4.stl"/>
+    <mesh name="vertical" class="objects" content_type="model/stl" file="G:\DPPO\tactile_envs-main\tactile_envs\assets\insertion\assets/vertical.stl"/>
+    <mesh name="vertical_wall1" class="objects" content_type="model/stl" file="G:\DPPO\tactile_envs-main\tactile_envs\assets\insertion\assets/vertical_wall1.stl"/>
+    <mesh name="vertical_wall2" class="objects" content_type="model/stl" file="G:\DPPO\tactile_envs-main\tactile_envs\assets\insertion\assets/vertical_wall2.stl"/>
+    <mesh name="vertical_wall3" class="objects" content_type="model/stl" file="G:\DPPO\tactile_envs-main\tactile_envs\assets\insertion\assets/vertical_wall3.stl"/>
+    <mesh name="vertical_wall4" class="objects" content_type="model/stl" file="G:\DPPO\tactile_envs-main\tactile_envs\assets\insertion\assets/vertical_wall4.stl"/>
+    <mesh name="trapezoidal" class="objects" content_type="model/stl" file="G:\DPPO\tactile_envs-main\tactile_envs\assets\insertion\assets/trapezoidal.stl"/>
+    <mesh name="trapezoidal_wall1" class="objects" content_type="model/stl" file="G:\DPPO\tactile_envs-main\tactile_envs\assets\insertion\assets/trapezoidal_wall1.stl"/>
+    <mesh name="trapezoidal_wall2" class="objects" content_type="model/stl" file="G:\DPPO\tactile_envs-main\tactile_envs\assets\insertion\assets/trapezoidal_wall2.stl"/>
+    <mesh name="trapezoidal_wall3" class="objects" content_type="model/stl" file="G:\DPPO\tactile_envs-main\tactile_envs\assets\insertion\assets/trapezoidal_wall3.stl"/>
+    <mesh name="trapezoidal_wall4" class="objects" content_type="model/stl" file="G:\DPPO\tactile_envs-main\tactile_envs\assets\insertion\assets/trapezoidal_wall4.stl"/>
+    <mesh name="rhombus" class="objects" content_type="model/stl" file="G:\DPPO\tactile_envs-main\tactile_envs\assets\insertion\assets/rhombus.stl"/>
+    <mesh name="rhombus_wall1" class="objects" content_type="model/stl" file="G:\DPPO\tactile_envs-main\tactile_envs\assets\insertion\assets/rhombus_wall1.stl"/>
+    <mesh name="rhombus_wall2" class="objects" content_type="model/stl" file="G:\DPPO\tactile_envs-main\tactile_envs\assets\insertion\assets/rhombus_wall2.stl"/>
+    <mesh name="rhombus_wall3" class="objects" content_type="model/stl" file="G:\DPPO\tactile_envs-main\tactile_envs\assets\insertion\assets/rhombus_wall3.stl"/>
+    <mesh name="rhombus_wall4" class="objects" content_type="model/stl" file="G:\DPPO\tactile_envs-main\tactile_envs\assets\insertion\assets/rhombus_wall4.stl"/>
+    <mesh name="holder1" class="objects" content_type="model/stl" file="G:\DPPO\tactile_envs-main\tactile_envs\assets\insertion\assets/holder1.stl"/>
+    <mesh name="holder2" class="objects" content_type="model/stl" file="G:\DPPO\tactile_envs-main\tactile_envs\assets\insertion\assets/holder2.stl"/>
+    <mesh name="holder3" class="objects" content_type="model/stl" file="G:\DPPO\tactile_envs-main\tactile_envs\assets\insertion\assets/holder3.stl"/>
+  </asset>
+  <worldbody>
+    <geom name="floor" size="5 5 0.05" type="box" material="floor_mat" rgba="0.941 0.9 0.55 1"/>
+    <geom name="back_wall" size="5 0.05 1.5" pos="0 -5 1.5" type="box" material="wall_mat" rgba="1 1 1 1"/>
+    <geom name="front_wall" size="5 0.05 1.5" pos="0 5 1.5" type="box" material="wall_mat" rgba="1 1 1 1"/>
+    <geom name="left_wall" size="0.05 5 1.5" pos="-5 0 1.5" type="box" material="wall_mat" rgba="1 1 1 1"/>
+    <geom name="right_wall" size="0.05 5 1.5" pos="5 0 1.5" type="box" material="wall_mat" rgba="1 1 1 1"/>
+    <camera name="eye_to_hand" pos=" 1.7844256286222042 0.01104561138145509 1.35" xyaxes="0.032 0.999 -0.000 -0.564 0.018 0.825"/>
+
+    <light name="main_light" pos="3 2 5" dir="-0.597022 -0.398015 -0.696526" diffuse="1 1 0.95" specular="0.8 0.8 0.8"/>
+    <body name="work_table" pos="0.6 0 0">
+      <geom name="work_tabletable_top" size="0.4 0.4 0.05" pos="-0.2 0 0.7" type="box" mass="50" rgba="0.862 0.875 0.89 1"/>
+      <geom name="work_tabletable_leg_0" size="0.05 0.7" pos="-0.5 -0.3 0" type="cylinder" mass="10" rgba="0.862 0.875 0.89 1"/>
+      <geom name="work_tabletable_leg_1" size="0.05 0.7" pos="-0.5 0.3 0" type="cylinder" mass="10" rgba="0.862 0.875 0.89 1"/>
+      <geom name="work_tabletable_leg_2" size="0.05 0.7" pos="0.1 -0.3 0" type="cylinder" mass="10" rgba="0.862 0.875 0.89 1"/>
+      <geom name="work_tabletable_leg_3" size="0.05 0.7" pos="0.1 0.3 0" type="cylinder" mass="10" rgba="0.862 0.875 0.89 1"/>
+    </body>
+    <body name="work_table2" pos="0.6 0 0">
+      <geom name="work_table2table_top" size="0.6 0.6 0.05" pos="0.8 0 0.7" type="box" mass="50" rgba="0 1 0 1"/>
+      <geom name="work_table2table_leg_0" size="0.05 0.7" pos="0.3 -0.5 0" type="cylinder" mass="10" rgba="0 1 0 1"/>
+      <geom name="work_table2table_leg_1" size="0.05 0.7" pos="0.3 0.5 0" type="cylinder" mass="10" rgba="0 1 0 1"/>
+      <geom name="work_table2table_leg_2" size="0.05 0.7" pos="1.3 -0.5 0" type="cylinder" mass="10" rgba="0 1 0 1"/>
+      <geom name="work_table2table_leg_3" size="0.05 0.7" pos="1.3 0.5 0" type="cylinder" mass="10" rgba="0 1 0 1"/>
+    </body>
+    <body name="robot0_base" pos="0.4 0 0.75" gravcomp="0">
+      <inertial pos="0 0 0" mass="0" diaginertia="0 0 0"/>
+      <body name="robot0_fixed_base_link" gravcomp="0">
+        <geom name="robot0_g0_vis" type="mesh" contype="0" conaffinity="0" group="1" material="robot0_Black" mesh="robot0_base_vis_0"/>
+        <geom name="robot0_g1_vis" type="mesh" contype="0" conaffinity="0" group="1" material="robot0_JointGrey" mesh="robot0_base_vis_1"/>
+        <geom name="robot0_base_col" type="mesh" rgba="0 0.5 0 0" mesh="robot0_base"/>
+        <site name="robot0_right_center" pos="0 0 0" size="0.01" group="2" rgba="1 0.3 0.3 1"/>
+        <body name="robot0_shoulder_link" pos="0 0 0.163" gravcomp="0">
+          <inertial pos="0 0 0" mass="3.7" diaginertia="0.0102675 0.0102675 0.00666"/>
+          <joint name="robot0_shoulder_pan_joint" pos="0 0 0" axis="0 0 1" limited="true" range="-6.28319 6.28319" armature="5" damping="1" frictionloss="0.01"/>
+          <geom name="robot0_g2_vis" type="mesh" contype="0" conaffinity="0" group="1" material="robot0_URBlue" mesh="robot0_shoulder_vis_0"/>
+          <geom name="robot0_g3_vis" type="mesh" contype="0" conaffinity="0" group="1" material="robot0_Black" mesh="robot0_shoulder_vis_1"/>
+          <geom name="robot0_g4_vis" type="mesh" contype="0" conaffinity="0" group="1" material="robot0_JointGrey" mesh="robot0_shoulder_vis_2"/>
+          <geom name="robot0_shoulder_col" type="mesh" rgba="0 0.5 0 0" mesh="robot0_shoulder"/>
+          <body name="robot0_upper_arm_link" pos="0 0.138 0" quat="0.707107 0 0.707107 0" gravcomp="0">
+            <inertial pos="0 0 0.2125" mass="8.393" diaginertia="0.133886 0.133886 0.0151074"/>
+            <joint name="robot0_shoulder_lift_joint" pos="0 0 0" axis="0 1 0" limited="true" range="-6.28319 6.28319" armature="2.5" damping="1" frictionloss="0.01"/>
+            <geom name="robot0_g5_vis" type="mesh" contype="0" conaffinity="0" group="1" material="robot0_LinkGrey" mesh="robot0_upperarm_vis_0"/>
+            <geom name="robot0_g6_vis" type="mesh" contype="0" conaffinity="0" group="1" material="robot0_Black" mesh="robot0_upperarm_vis_1"/>
+            <geom name="robot0_g7_vis" type="mesh" contype="0" conaffinity="0" group="1" material="robot0_JointGrey" mesh="robot0_upperarm_vis_2"/>
+            <geom name="robot0_g8_vis" type="mesh" contype="0" conaffinity="0" group="1" material="robot0_URBlue" mesh="robot0_upperarm_vis_3"/>
+            <geom name="robot0_upperarm_col" type="mesh" rgba="0 0.5 0 0" mesh="robot0_upperarm"/>
+            <body name="robot0_forearm_link" pos="0 -0.131 0.425" gravcomp="0">
+              <inertial pos="0 0 0.196" mass="2.275" diaginertia="0.0311796 0.0311796 0.004095"/>
+              <joint name="robot0_elbow_joint" pos="0 0 0" axis="0 1 0" limited="true" range="-3.14159 3.14159" armature="1.66667" damping="1" frictionloss="0.01"/>
+              <geom name="robot0_g9_vis" type="mesh" contype="0" conaffinity="0" group="1" material="robot0_URBlue" mesh="robot0_forearm_vis_0"/>
+              <geom name="robot0_g10_vis" type="mesh" contype="0" conaffinity="0" group="1" material="robot0_LinkGrey" mesh="robot0_forearm_vis_1"/>
+              <geom name="robot0_g11_vis" type="mesh" contype="0" conaffinity="0" group="1" material="robot0_Black" mesh="robot0_forearm_vis_2"/>
+              <geom name="robot0_g12_vis" type="mesh" contype="0" conaffinity="0" group="1" material="robot0_JointGrey" mesh="robot0_forearm_vis_3"/>
+              <geom name="robot0_forearm_col" type="mesh" rgba="0 0.5 0 0" mesh="robot0_forearm"/>
+              <body name="robot0_wrist_1_link" pos="0 0 0.392" quat="0.707107 0 0.707107 0" gravcomp="0">
+                <inertial pos="0 0.127 0" mass="1.219" diaginertia="0.0025599 0.0025599 0.0021942"/>
+                <joint name="robot0_wrist_1_joint" pos="0 0 0" axis="0 1 0" limited="true" range="-6.28319 6.28319" armature="1.25" damping="1" frictionloss="0.01"/>
+                <geom name="robot0_g13_vis" type="mesh" contype="0" conaffinity="0" group="1" material="robot0_Black" mesh="robot0_wrist1_vis_0"/>
+                <geom name="robot0_g14_vis" type="mesh" contype="0" conaffinity="0" group="1" material="robot0_URBlue" mesh="robot0_wrist1_vis_1"/>
+                <geom name="robot0_g15_vis" type="mesh" contype="0" conaffinity="0" group="1" material="robot0_JointGrey" mesh="robot0_wrist1_vis_2"/>
+                <geom name="robot0_wrist1_col" type="mesh" rgba="0 0.5 0 0" mesh="robot0_wrist1"/>
+                <body name="robot0_wrist_2_link" pos="0 0.127 0" gravcomp="0">
+                  <inertial pos="0 0 0.1" mass="1.219" diaginertia="0.0025599 0.0025599 0.0021942"/>
+                  <joint name="robot0_wrist_2_joint" pos="0 0 0" axis="0 0 1" limited="true" range="-6.28319 6.28319" armature="1" damping="1" frictionloss="0.01"/>
+                  <geom name="robot0_g16_vis" type="mesh" contype="0" conaffinity="0" group="1" material="robot0_Black" mesh="robot0_wrist2_vis_0"/>
+                  <geom name="robot0_g17_vis" type="mesh" contype="0" conaffinity="0" group="1" material="robot0_URBlue" mesh="robot0_wrist2_vis_1"/>
+                  <geom name="robot0_g18_vis" type="mesh" contype="0" conaffinity="0" group="1" material="robot0_JointGrey" mesh="robot0_wrist2_vis_2"/>
+                  <geom name="robot0_wrist2_col" type="mesh" rgba="0 0.5 0 0" mesh="robot0_wrist2"/>
+                  <body name="robot0_wrist_3_link" pos="0 0 0.1" gravcomp="0">
+                    <inertial pos="0 0.0771683 0" quat="0.707107 0 0 0.707107" mass="0.1889" diaginertia="0.000132134 9.90863e-05 9.90863e-05"/>
+                    <joint name="robot0_wrist_3_joint" pos="0 0 0" axis="0 1 0" limited="true" range="-6.28319 6.28319" armature="0.833333" damping="1" frictionloss="0.01"/>
+                    <geom name="robot0_g19_vis" type="mesh" contype="0" conaffinity="0" group="1" material="robot0_LinkGrey" mesh="robot0_wrist3_vis"/>
+                    <geom name="robot0_wrist3_col" type="mesh" rgba="0 0.5 0 0" mesh="robot0_wrist3"/>
+                    <geom name="robot0_wrist3_col2" size="0.005 0.005 0.005" pos="0 0.09 0" quat="0.707107 0 0 0.707107" type="box" rgba="0 0.5 0 0"/>
+                    <body name="robot0_right_hand" pos="0 0.098 0" quat="0.707107 -0.707107 0 0" gravcomp="0">
+                      <camera name="eye_in_hand" pos="-0.098 0 0" fovy="75" quat="-0.13492233 -0.69411524 0.69411524 0.13492233"/>
+                      <body name="base_mount" pos="0 0 0" xyaxes="0 1 0 -1 0 0" childclass="2f85" gravcomp="1">
+                        <site name="center_point" pos="0 0 0.15" zaxis="1 0 0" rgba="1 0 0 1" group="5"/>
+                        <geom class="visual" mesh="base_mount" material="black"/>
+                        <geom class="collision" mesh="base_mount"/>
+                        <body name="base" pos="0 0 0.0038" quat="1 0 0 -1" gravcomp="1">
+                          <inertial mass="0.777441" pos="0 -2.70394e-05 0.0354675" quat="1 -0.00152849 0 0" diaginertia="0.000260285 0.000225381 0.000152708"/>
+                          <geom class="visual" mesh="base" material="black"/>
+                          <geom class="collision" mesh="base"/>
+                          <site name="pinch" pos="0 0 0.145" type="sphere" group="5" rgba="0.9 0.9 0.9 1" size="0.005"/>
+                          <!-- Right-hand side 4-bar linkage -->
+                          <body name="right_driver" pos="0 0.0306011 0.054904" gravcomp="1">
+                            <inertial mass="0.00899563" pos="2.96931e-12 0.0177547 0.00107314" quat="0.681301 0.732003 0 0" diaginertia="1.72352e-06 1.60906e-06 3.22006e-07"/>
+                            <joint name="right_driver_joint" class="driver"/>
+                            <geom class="visual" mesh="driver" material="gray"/>
+                            <geom class="collision" mesh="driver"/>
+                            <body name="right_coupler" pos="0 0.0315 -0.0041" gravcomp="1">
+                              <inertial mass="0.0140974" pos="0 0.00301209 0.0232175" quat="0.705636 -0.0455904 0.0455904 0.705636" diaginertia="4.16206e-06 3.52216e-06 8.88131e-07"/>
+                              <joint name="right_coupler_joint" class="coupler"/>
+                              <geom class="visual" mesh="coupler" material="black"/>
+                              <geom class="collision" mesh="coupler"/>
+                            </body>
+                          </body>
+                          <body name="right_spring_link" pos="0 0.0132 0.0609" gravcomp="1">
+                            <inertial mass="0.0221642" pos="-8.65005e-09 0.0181624 0.0212658" quat="0.663403 -0.244737 0.244737 0.663403" diaginertia="8.96853e-06 6.71733e-06 2.63931e-06"/>
+                            <joint name="right_spring_link_joint" class="spring_link"/>
+                            <geom class="visual" mesh="spring_link" material="black"/>
+                            <geom class="collision" mesh="spring_link"/>
+                            <body name="right_follower" pos="0 0.055 0.0375" gravcomp="1">
+                              <inertial mass="0.0125222" pos="0 -0.011046 0.0124786" quat="1 0.1664 0 0" diaginertia="2.67415e-06 2.4559e-06 6.02031e-07"/>
+                              <joint name="right_follower_joint" class="follower"/>
+                              <geom class="visual" mesh="follower" material="black"/>
+                              <geom class="collision" mesh="follower"/>
+                              <body name="right_pad" pos="0 -0.0189 0.01352" gravcomp="1">
+                                <geom class="pad" pos="-0.010312499999999999 -0.0026 0.001171875" size="0.0006875 0.004 0.001171875" rgba="0.6 0.6 0.6 1"/>
+                                <geom class="pad" pos="-0.0089375 -0.0026 0.001171875" size="0.0006875 0.004 0.001171875" rgba="0.600392156862745 0.600392156862745 0.600392156862745 1"/>
+                                <geom class="pad" pos="-0.007562499999999999 -0.0026 0.001171875" size="0.0006875 0.004 0.001171875" rgba="0.6007843137254901 0.6007843137254901 0.6007843137254901 1"/>
+                                <geom class="pad" pos="-0.0061874999999999986 -0.0026 0.001171875" size="0.0006875 0.004 0.001171875" rgba="0.6011764705882353 0.6011764705882353 0.6011764705882353 1"/>
+                                <geom class="pad" pos="-0.004812499999999999 -0.0026 0.001171875" size="0.0006875 0.004 0.001171875" rgba="0.6015686274509804 0.6015686274509804 0.6015686274509804 1"/>
+                                <geom class="pad" pos="-0.0034374999999999996 -0.0026 0.001171875" size="0.0006875 0.004 0.001171875" rgba="0.6019607843137255 0.6019607843137255 0.6019607843137255 1"/>
+                                <geom class="pad" pos="-0.0020624999999999984 -0.0026 0.001171875" size="0.0006875 0.004 0.001171875" rgba="0.6023529411764705 0.6023529411764705 0.6023529411764705 1"/>
+                                <geom class="pad" pos="-0.0006874999999999989 -0.0026 0.001171875" size="0.0006875 0.004 0.001171875" rgba="0.6027450980392156 0.6027450980392156 0.6027450980392156 1"/>
+                                <geom class="pad" pos="0.0006875000000000006 -0.0026 0.001171875" size="0.0006875 0.004 0.001171875" rgba="0.6031372549019608 0.6031372549019608 0.6031372549019608 1"/>
+                                <geom class="pad" pos="0.0020625 -0.0026 0.001171875" size="0.0006875 0.004 0.001171875" rgba="0.6035294117647059 0.6035294117647059 0.6035294117647059 1"/>
+                                <geom class="pad" pos="0.0034374999999999996 -0.0026 0.001171875" size="0.0006875 0.004 0.001171875" rgba="0.6039215686274509 0.6039215686274509 0.6039215686274509 1"/>
+                                <geom class="pad" pos="0.004812500000000001 -0.0026 0.001171875" size="0.0006875 0.004 0.001171875" rgba="0.604313725490196 0.604313725490196 0.604313725490196 1"/>
+                                <geom class="pad" pos="0.006187500000000002 -0.0026 0.001171875" size="0.0006875 0.004 0.001171875" rgba="0.6047058823529412 0.6047058823529412 0.6047058823529412 1"/>
+                                <geom class="pad" pos="0.0075625 -0.0026 0.001171875" size="0.0006875 0.004 0.001171875" rgba="0.6050980392156863 0.6050980392156863 0.6050980392156863 1"/>
+                                <geom class="pad" pos="0.008937500000000001 -0.0026 0.001171875" size="0.0006875 0.004 0.001171875" rgba="0.6054901960784314 0.6054901960784314 0.6054901960784314 1"/>
+                                <geom class="pad" pos="0.010312499999999999 -0.0026 0.001171875" size="0.0006875 0.004 0.001171875" rgba="0.6058823529411764 0.6058823529411764 0.6058823529411764 1"/>
+                                <geom class="pad" pos="-0.010312499999999999 -0.0026 0.0035156249999999997" size="0.0006875 0.004 0.001171875" rgba="0.6062745098039215 0.6062745098039215 0.6062745098039215 1"/>
+                                <geom class="pad" pos="-0.0089375 -0.0026 0.0035156249999999997" size="0.0006875 0.004 0.001171875" rgba="0.6066666666666667 0.6066666666666667 0.6066666666666667 1"/>
+                                <geom class="pad" pos="-0.007562499999999999 -0.0026 0.0035156249999999997" size="0.0006875 0.004 0.001171875" rgba="0.6070588235294118 0.6070588235294118 0.6070588235294118 1"/>
+                                <geom class="pad" pos="-0.0061874999999999986 -0.0026 0.0035156249999999997" size="0.0006875 0.004 0.001171875" rgba="0.6074509803921568 0.6074509803921568 0.6074509803921568 1"/>
+                                <geom class="pad" pos="-0.004812499999999999 -0.0026 0.0035156249999999997" size="0.0006875 0.004 0.001171875" rgba="0.6078431372549019 0.6078431372549019 0.6078431372549019 1"/>
+                                <geom class="pad" pos="-0.0034374999999999996 -0.0026 0.0035156249999999997" size="0.0006875 0.004 0.001171875" rgba="0.608235294117647 0.608235294117647 0.608235294117647 1"/>
+                                <geom class="pad" pos="-0.0020624999999999984 -0.0026 0.0035156249999999997" size="0.0006875 0.004 0.001171875" rgba="0.6086274509803922 0.6086274509803922 0.6086274509803922 1"/>
+                                <geom class="pad" pos="-0.0006874999999999989 -0.0026 0.0035156249999999997" size="0.0006875 0.004 0.001171875" rgba="0.6090196078431372 0.6090196078431372 0.6090196078431372 1"/>
+                                <geom class="pad" pos="0.0006875000000000006 -0.0026 0.0035156249999999997" size="0.0006875 0.004 0.001171875" rgba="0.6094117647058823 0.6094117647058823 0.6094117647058823 1"/>
+                                <geom class="pad" pos="0.0020625 -0.0026 0.0035156249999999997" size="0.0006875 0.004 0.001171875" rgba="0.6098039215686274 0.6098039215686274 0.6098039215686274 1"/>
+                                <geom class="pad" pos="0.0034374999999999996 -0.0026 0.0035156249999999997" size="0.0006875 0.004 0.001171875" rgba="0.6101960784313726 0.6101960784313726 0.6101960784313726 1"/>
+                                <geom class="pad" pos="0.004812500000000001 -0.0026 0.0035156249999999997" size="0.0006875 0.004 0.001171875" rgba="0.6105882352941177 0.6105882352941177 0.6105882352941177 1"/>
+                                <geom class="pad" pos="0.006187500000000002 -0.0026 0.0035156249999999997" size="0.0006875 0.004 0.001171875" rgba="0.6109803921568627 0.6109803921568627 0.6109803921568627 1"/>
+                                <geom class="pad" pos="0.0075625 -0.0026 0.0035156249999999997" size="0.0006875 0.004 0.001171875" rgba="0.6113725490196078 0.6113725490196078 0.6113725490196078 1"/>
+                                <geom class="pad" pos="0.008937500000000001 -0.0026 0.0035156249999999997" size="0.0006875 0.004 0.001171875" rgba="0.6117647058823529 0.6117647058823529 0.6117647058823529 1"/>
+                                <geom class="pad" pos="0.010312499999999999 -0.0026 0.0035156249999999997" size="0.0006875 0.004 0.001171875" rgba="0.6121568627450981 0.6121568627450981 0.6121568627450981 1"/>
+                                <geom class="pad" pos="-0.010312499999999999 -0.0026 0.005859375" size="0.0006875 0.004 0.001171875" rgba="0.6125490196078431 0.6125490196078431 0.6125490196078431 1"/>
+                                <geom class="pad" pos="-0.0089375 -0.0026 0.005859375" size="0.0006875 0.004 0.001171875" rgba="0.6129411764705882 0.6129411764705882 0.6129411764705882 1"/>
+                                <geom class="pad" pos="-0.007562499999999999 -0.0026 0.005859375" size="0.0006875 0.004 0.001171875" rgba="0.6133333333333333 0.6133333333333333 0.6133333333333333 1"/>
+                                <geom class="pad" pos="-0.0061874999999999986 -0.0026 0.005859375" size="0.0006875 0.004 0.001171875" rgba="0.6137254901960784 0.6137254901960784 0.6137254901960784 1"/>
+                                <geom class="pad" pos="-0.004812499999999999 -0.0026 0.005859375" size="0.0006875 0.004 0.001171875" rgba="0.6141176470588235 0.6141176470588235 0.6141176470588235 1"/>
+                                <geom class="pad" pos="-0.0034374999999999996 -0.0026 0.005859375" size="0.0006875 0.004 0.001171875" rgba="0.6145098039215686 0.6145098039215686 0.6145098039215686 1"/>
+                                <geom class="pad" pos="-0.0020624999999999984 -0.0026 0.005859375" size="0.0006875 0.004 0.001171875" rgba="0.6149019607843137 0.6149019607843137 0.6149019607843137 1"/>
+                                <geom class="pad" pos="-0.0006874999999999989 -0.0026 0.005859375" size="0.0006875 0.004 0.001171875" rgba="0.6152941176470588 0.6152941176470588 0.6152941176470588 1"/>
+                                <geom class="pad" pos="0.0006875000000000006 -0.0026 0.005859375" size="0.0006875 0.004 0.001171875" rgba="0.615686274509804 0.615686274509804 0.615686274509804 1"/>
+                                <geom class="pad" pos="0.0020625 -0.0026 0.005859375" size="0.0006875 0.004 0.001171875" rgba="0.616078431372549 0.616078431372549 0.616078431372549 1"/>
+                                <geom class="pad" pos="0.0034374999999999996 -0.0026 0.005859375" size="0.0006875 0.004 0.001171875" rgba="0.6164705882352941 0.6164705882352941 0.6164705882352941 1"/>
+                                <geom class="pad" pos="0.004812500000000001 -0.0026 0.005859375" size="0.0006875 0.004 0.001171875" rgba="0.6168627450980392 0.6168627450980392 0.6168627450980392 1"/>
+                                <geom class="pad" pos="0.006187500000000002 -0.0026 0.005859375" size="0.0006875 0.004 0.001171875" rgba="0.6172549019607843 0.6172549019607843 0.6172549019607843 1"/>
+                                <geom class="pad" pos="0.0075625 -0.0026 0.005859375" size="0.0006875 0.004 0.001171875" rgba="0.6176470588235294 0.6176470588235294 0.6176470588235294 1"/>
+                                <geom class="pad" pos="0.008937500000000001 -0.0026 0.005859375" size="0.0006875 0.004 0.001171875" rgba="0.6180392156862745 0.6180392156862745 0.6180392156862745 1"/>
+                                <geom class="pad" pos="0.010312499999999999 -0.0026 0.005859375" size="0.0006875 0.004 0.001171875" rgba="0.6184313725490196 0.6184313725490196 0.6184313725490196 1"/>
+                                <geom class="pad" pos="-0.010312499999999999 -0.0026 0.008203124999999999" size="0.0006875 0.004 0.001171875" rgba="0.6188235294117647 0.6188235294117647 0.6188235294117647 1"/>
+                                <geom class="pad" pos="-0.0089375 -0.0026 0.008203124999999999" size="0.0006875 0.004 0.001171875" rgba="0.6192156862745097 0.6192156862745097 0.6192156862745097 1"/>
+                                <geom class="pad" pos="-0.007562499999999999 -0.0026 0.008203124999999999" size="0.0006875 0.004 0.001171875" rgba="0.6196078431372549 0.6196078431372549 0.6196078431372549 1"/>
+                                <geom class="pad" pos="-0.0061874999999999986 -0.0026 0.008203124999999999" size="0.0006875 0.004 0.001171875" rgba="0.62 0.62 0.62 1"/>
+                                <geom class="pad" pos="-0.004812499999999999 -0.0026 0.008203124999999999" size="0.0006875 0.004 0.001171875" rgba="0.6203921568627451 0.6203921568627451 0.6203921568627451 1"/>
+                                <geom class="pad" pos="-0.0034374999999999996 -0.0026 0.008203124999999999" size="0.0006875 0.004 0.001171875" rgba="0.6207843137254901 0.6207843137254901 0.6207843137254901 1"/>
+                                <geom class="pad" pos="-0.0020624999999999984 -0.0026 0.008203124999999999" size="0.0006875 0.004 0.001171875" rgba="0.6211764705882352 0.6211764705882352 0.6211764705882352 1"/>
+                                <geom class="pad" pos="-0.0006874999999999989 -0.0026 0.008203124999999999" size="0.0006875 0.004 0.001171875" rgba="0.6215686274509804 0.6215686274509804 0.6215686274509804 1"/>
+                                <geom class="pad" pos="0.0006875000000000006 -0.0026 0.008203124999999999" size="0.0006875 0.004 0.001171875" rgba="0.6219607843137255 0.6219607843137255 0.6219607843137255 1"/>
+                                <geom class="pad" pos="0.0020625 -0.0026 0.008203124999999999" size="0.0006875 0.004 0.001171875" rgba="0.6223529411764706 0.6223529411764706 0.6223529411764706 1"/>
+                                <geom class="pad" pos="0.0034374999999999996 -0.0026 0.008203124999999999" size="0.0006875 0.004 0.001171875" rgba="0.6227450980392156 0.6227450980392156 0.6227450980392156 1"/>
+                                <geom class="pad" pos="0.004812500000000001 -0.0026 0.008203124999999999" size="0.0006875 0.004 0.001171875" rgba="0.6231372549019608 0.6231372549019608 0.6231372549019608 1"/>
+                                <geom class="pad" pos="0.006187500000000002 -0.0026 0.008203124999999999" size="0.0006875 0.004 0.001171875" rgba="0.6235294117647059 0.6235294117647059 0.6235294117647059 1"/>
+                                <geom class="pad" pos="0.0075625 -0.0026 0.008203124999999999" size="0.0006875 0.004 0.001171875" rgba="0.623921568627451 0.623921568627451 0.623921568627451 1"/>
+                                <geom class="pad" pos="0.008937500000000001 -0.0026 0.008203124999999999" size="0.0006875 0.004 0.001171875" rgba="0.624313725490196 0.624313725490196 0.624313725490196 1"/>
+                                <geom class="pad" pos="0.010312499999999999 -0.0026 0.008203124999999999" size="0.0006875 0.004 0.001171875" rgba="0.6247058823529411 0.6247058823529411 0.6247058823529411 1"/>
+                                <geom class="pad" pos="-0.010312499999999999 -0.0026 0.010546874999999999" size="0.0006875 0.004 0.001171875" rgba="0.6250980392156863 0.6250980392156863 0.6250980392156863 1"/>
+                                <geom class="pad" pos="-0.0089375 -0.0026 0.010546874999999999" size="0.0006875 0.004 0.001171875" rgba="0.6254901960784314 0.6254901960784314 0.6254901960784314 1"/>
+                                <geom class="pad" pos="-0.007562499999999999 -0.0026 0.010546874999999999" size="0.0006875 0.004 0.001171875" rgba="0.6258823529411764 0.6258823529411764 0.6258823529411764 1"/>
+                                <geom class="pad" pos="-0.0061874999999999986 -0.0026 0.010546874999999999" size="0.0006875 0.004 0.001171875" rgba="0.6262745098039215 0.6262745098039215 0.6262745098039215 1"/>
+                                <geom class="pad" pos="-0.004812499999999999 -0.0026 0.010546874999999999" size="0.0006875 0.004 0.001171875" rgba="0.6266666666666666 0.6266666666666666 0.6266666666666666 1"/>
+                                <geom class="pad" pos="-0.0034374999999999996 -0.0026 0.010546874999999999" size="0.0006875 0.004 0.001171875" rgba="0.6270588235294118 0.6270588235294118 0.6270588235294118 1"/>
+                                <geom class="pad" pos="-0.0020624999999999984 -0.0026 0.010546874999999999" size="0.0006875 0.004 0.001171875" rgba="0.6274509803921569 0.6274509803921569 0.6274509803921569 1"/>
+                                <geom class="pad" pos="-0.0006874999999999989 -0.0026 0.010546874999999999" size="0.0006875 0.004 0.001171875" rgba="0.6278431372549019 0.6278431372549019 0.6278431372549019 1"/>
+                                <geom class="pad" pos="0.0006875000000000006 -0.0026 0.010546874999999999" size="0.0006875 0.004 0.001171875" rgba="0.628235294117647 0.628235294117647 0.628235294117647 1"/>
+                                <geom class="pad" pos="0.0020625 -0.0026 0.010546874999999999" size="0.0006875 0.004 0.001171875" rgba="0.6286274509803922 0.6286274509803922 0.6286274509803922 1"/>
+                                <geom class="pad" pos="0.0034374999999999996 -0.0026 0.010546874999999999" size="0.0006875 0.004 0.001171875" rgba="0.6290196078431373 0.6290196078431373 0.6290196078431373 1"/>
+                                <geom class="pad" pos="0.004812500000000001 -0.0026 0.010546874999999999" size="0.0006875 0.004 0.001171875" rgba="0.6294117647058823 0.6294117647058823 0.6294117647058823 1"/>
+                                <geom class="pad" pos="0.006187500000000002 -0.0026 0.010546874999999999" size="0.0006875 0.004 0.001171875" rgba="0.6298039215686274 0.6298039215686274 0.6298039215686274 1"/>
+                                <geom class="pad" pos="0.0075625 -0.0026 0.010546874999999999" size="0.0006875 0.004 0.001171875" rgba="0.6301960784313725 0.6301960784313725 0.6301960784313725 1"/>
+                                <geom class="pad" pos="0.008937500000000001 -0.0026 0.010546874999999999" size="0.0006875 0.004 0.001171875" rgba="0.6305882352941177 0.6305882352941177 0.6305882352941177 1"/>
+                                <geom class="pad" pos="0.010312499999999999 -0.0026 0.010546874999999999" size="0.0006875 0.004 0.001171875" rgba="0.6309803921568627 0.6309803921568627 0.6309803921568627 1"/>
+                                <geom class="pad" pos="-0.010312499999999999 -0.0026 0.012890625" size="0.0006875 0.004 0.001171875" rgba="0.6313725490196078 0.6313725490196078 0.6313725490196078 1"/>
+                                <geom class="pad" pos="-0.0089375 -0.0026 0.012890625" size="0.0006875 0.004 0.001171875" rgba="0.6317647058823529 0.6317647058823529 0.6317647058823529 1"/>
+                                <geom class="pad" pos="-0.007562499999999999 -0.0026 0.012890625" size="0.0006875 0.004 0.001171875" rgba="0.632156862745098 0.632156862745098 0.632156862745098 1"/>
+                                <geom class="pad" pos="-0.0061874999999999986 -0.0026 0.012890625" size="0.0006875 0.004 0.001171875" rgba="0.6325490196078432 0.6325490196078432 0.6325490196078432 1"/>
+                                <geom class="pad" pos="-0.004812499999999999 -0.0026 0.012890625" size="0.0006875 0.004 0.001171875" rgba="0.6329411764705882 0.6329411764705882 0.6329411764705882 1"/>
+                                <geom class="pad" pos="-0.0034374999999999996 -0.0026 0.012890625" size="0.0006875 0.004 0.001171875" rgba="0.6333333333333333 0.6333333333333333 0.6333333333333333 1"/>
+                                <geom class="pad" pos="-0.0020624999999999984 -0.0026 0.012890625" size="0.0006875 0.004 0.001171875" rgba="0.6337254901960784 0.6337254901960784 0.6337254901960784 1"/>
+                                <geom class="pad" pos="-0.0006874999999999989 -0.0026 0.012890625" size="0.0006875 0.004 0.001171875" rgba="0.6341176470588235 0.6341176470588235 0.6341176470588235 1"/>
+                                <geom class="pad" pos="0.0006875000000000006 -0.0026 0.012890625" size="0.0006875 0.004 0.001171875" rgba="0.6345098039215686 0.6345098039215686 0.6345098039215686 1"/>
+                                <geom class="pad" pos="0.0020625 -0.0026 0.012890625" size="0.0006875 0.004 0.001171875" rgba="0.6349019607843137 0.6349019607843137 0.6349019607843137 1"/>
+                                <geom class="pad" pos="0.0034374999999999996 -0.0026 0.012890625" size="0.0006875 0.004 0.001171875" rgba="0.6352941176470588 0.6352941176470588 0.6352941176470588 1"/>
+                                <geom class="pad" pos="0.004812500000000001 -0.0026 0.012890625" size="0.0006875 0.004 0.001171875" rgba="0.6356862745098039 0.6356862745098039 0.6356862745098039 1"/>
+                                <geom class="pad" pos="0.006187500000000002 -0.0026 0.012890625" size="0.0006875 0.004 0.001171875" rgba="0.636078431372549 0.636078431372549 0.636078431372549 1"/>
+                                <geom class="pad" pos="0.0075625 -0.0026 0.012890625" size="0.0006875 0.004 0.001171875" rgba="0.6364705882352941 0.6364705882352941 0.6364705882352941 1"/>
+                                <geom class="pad" pos="0.008937500000000001 -0.0026 0.012890625" size="0.0006875 0.004 0.001171875" rgba="0.6368627450980392 0.6368627450980392 0.6368627450980392 1"/>
+                                <geom class="pad" pos="0.010312499999999999 -0.0026 0.012890625" size="0.0006875 0.004 0.001171875" rgba="0.6372549019607843 0.6372549019607843 0.6372549019607843 1"/>
+                                <geom class="pad" pos="-0.010312499999999999 -0.0026 0.015234374999999998" size="0.0006875 0.004 0.001171875" rgba="0.6376470588235293 0.6376470588235293 0.6376470588235293 1"/>
+                                <geom class="pad" pos="-0.0089375 -0.0026 0.015234374999999998" size="0.0006875 0.004 0.001171875" rgba="0.6380392156862745 0.6380392156862745 0.6380392156862745 1"/>
+                                <geom class="pad" pos="-0.007562499999999999 -0.0026 0.015234374999999998" size="0.0006875 0.004 0.001171875" rgba="0.6384313725490196 0.6384313725490196 0.6384313725490196 1"/>
+                                <geom class="pad" pos="-0.0061874999999999986 -0.0026 0.015234374999999998" size="0.0006875 0.004 0.001171875" rgba="0.6388235294117647 0.6388235294117647 0.6388235294117647 1"/>
+                                <geom class="pad" pos="-0.004812499999999999 -0.0026 0.015234374999999998" size="0.0006875 0.004 0.001171875" rgba="0.6392156862745098 0.6392156862745098 0.6392156862745098 1"/>
+                                <geom class="pad" pos="-0.0034374999999999996 -0.0026 0.015234374999999998" size="0.0006875 0.004 0.001171875" rgba="0.6396078431372549 0.6396078431372549 0.6396078431372549 1"/>
+                                <geom class="pad" pos="-0.0020624999999999984 -0.0026 0.015234374999999998" size="0.0006875 0.004 0.001171875" rgba="0.64 0.64 0.64 1"/>
+                                <geom class="pad" pos="-0.0006874999999999989 -0.0026 0.015234374999999998" size="0.0006875 0.004 0.001171875" rgba="0.6403921568627451 0.6403921568627451 0.6403921568627451 1"/>
+                                <geom class="pad" pos="0.0006875000000000006 -0.0026 0.015234374999999998" size="0.0006875 0.004 0.001171875" rgba="0.6407843137254902 0.6407843137254902 0.6407843137254902 1"/>
+                                <geom class="pad" pos="0.0020625 -0.0026 0.015234374999999998" size="0.0006875 0.004 0.001171875" rgba="0.6411764705882352 0.6411764705882352 0.6411764705882352 1"/>
+                                <geom class="pad" pos="0.0034374999999999996 -0.0026 0.015234374999999998" size="0.0006875 0.004 0.001171875" rgba="0.6415686274509804 0.6415686274509804 0.6415686274509804 1"/>
+                                <geom class="pad" pos="0.004812500000000001 -0.0026 0.015234374999999998" size="0.0006875 0.004 0.001171875" rgba="0.6419607843137255 0.6419607843137255 0.6419607843137255 1"/>
+                                <geom class="pad" pos="0.006187500000000002 -0.0026 0.015234374999999998" size="0.0006875 0.004 0.001171875" rgba="0.6423529411764706 0.6423529411764706 0.6423529411764706 1"/>
+                                <geom class="pad" pos="0.0075625 -0.0026 0.015234374999999998" size="0.0006875 0.004 0.001171875" rgba="0.6427450980392156 0.6427450980392156 0.6427450980392156 1"/>
+                                <geom class="pad" pos="0.008937500000000001 -0.0026 0.015234374999999998" size="0.0006875 0.004 0.001171875" rgba="0.6431372549019607 0.6431372549019607 0.6431372549019607 1"/>
+                                <geom class="pad" pos="0.010312499999999999 -0.0026 0.015234374999999998" size="0.0006875 0.004 0.001171875" rgba="0.6435294117647059 0.6435294117647059 0.6435294117647059 1"/>
+                                <geom class="pad" pos="-0.010312499999999999 -0.0026 0.017578125" size="0.0006875 0.004 0.001171875" rgba="0.643921568627451 0.643921568627451 0.643921568627451 1"/>
+                                <geom class="pad" pos="-0.0089375 -0.0026 0.017578125" size="0.0006875 0.004 0.001171875" rgba="0.644313725490196 0.644313725490196 0.644313725490196 1"/>
+                                <geom class="pad" pos="-0.007562499999999999 -0.0026 0.017578125" size="0.0006875 0.004 0.001171875" rgba="0.6447058823529411 0.6447058823529411 0.6447058823529411 1"/>
+                                <geom class="pad" pos="-0.0061874999999999986 -0.0026 0.017578125" size="0.0006875 0.004 0.001171875" rgba="0.6450980392156862 0.6450980392156862 0.6450980392156862 1"/>
+                                <geom class="pad" pos="-0.004812499999999999 -0.0026 0.017578125" size="0.0006875 0.004 0.001171875" rgba="0.6454901960784314 0.6454901960784314 0.6454901960784314 1"/>
+                                <geom class="pad" pos="-0.0034374999999999996 -0.0026 0.017578125" size="0.0006875 0.004 0.001171875" rgba="0.6458823529411765 0.6458823529411765 0.6458823529411765 1"/>
+                                <geom class="pad" pos="-0.0020624999999999984 -0.0026 0.017578125" size="0.0006875 0.004 0.001171875" rgba="0.6462745098039215 0.6462745098039215 0.6462745098039215 1"/>
+                                <geom class="pad" pos="-0.0006874999999999989 -0.0026 0.017578125" size="0.0006875 0.004 0.001171875" rgba="0.6466666666666666 0.6466666666666666 0.6466666666666666 1"/>
+                                <geom class="pad" pos="0.0006875000000000006 -0.0026 0.017578125" size="0.0006875 0.004 0.001171875" rgba="0.6470588235294117 0.6470588235294117 0.6470588235294117 1"/>
+                                <geom class="pad" pos="0.0020625 -0.0026 0.017578125" size="0.0006875 0.004 0.001171875" rgba="0.6474509803921569 0.6474509803921569 0.6474509803921569 1"/>
+                                <geom class="pad" pos="0.0034374999999999996 -0.0026 0.017578125" size="0.0006875 0.004 0.001171875" rgba="0.647843137254902 0.647843137254902 0.647843137254902 1"/>
+                                <geom class="pad" pos="0.004812500000000001 -0.0026 0.017578125" size="0.0006875 0.004 0.001171875" rgba="0.648235294117647 0.648235294117647 0.648235294117647 1"/>
+                                <geom class="pad" pos="0.006187500000000002 -0.0026 0.017578125" size="0.0006875 0.004 0.001171875" rgba="0.6486274509803921 0.6486274509803921 0.6486274509803921 1"/>
+                                <geom class="pad" pos="0.0075625 -0.0026 0.017578125" size="0.0006875 0.004 0.001171875" rgba="0.6490196078431373 0.6490196078431373 0.6490196078431373 1"/>
+                                <geom class="pad" pos="0.008937500000000001 -0.0026 0.017578125" size="0.0006875 0.004 0.001171875" rgba="0.6494117647058824 0.6494117647058824 0.6494117647058824 1"/>
+                                <geom class="pad" pos="0.010312499999999999 -0.0026 0.017578125" size="0.0006875 0.004 0.001171875" rgba="0.6498039215686274 0.6498039215686274 0.6498039215686274 1"/>
+                                <geom class="pad" pos="-0.010312499999999999 -0.0026 0.019921875" size="0.0006875 0.004 0.001171875" rgba="0.6501960784313725 0.6501960784313725 0.6501960784313725 1"/>
+                                <geom class="pad" pos="-0.0089375 -0.0026 0.019921875" size="0.0006875 0.004 0.001171875" rgba="0.6505882352941176 0.6505882352941176 0.6505882352941176 1"/>
+                                <geom class="pad" pos="-0.007562499999999999 -0.0026 0.019921875" size="0.0006875 0.004 0.001171875" rgba="0.6509803921568628 0.6509803921568628 0.6509803921568628 1"/>
+                                <geom class="pad" pos="-0.0061874999999999986 -0.0026 0.019921875" size="0.0006875 0.004 0.001171875" rgba="0.6513725490196078 0.6513725490196078 0.6513725490196078 1"/>
+                                <geom class="pad" pos="-0.004812499999999999 -0.0026 0.019921875" size="0.0006875 0.004 0.001171875" rgba="0.6517647058823529 0.6517647058823529 0.6517647058823529 1"/>
+                                <geom class="pad" pos="-0.0034374999999999996 -0.0026 0.019921875" size="0.0006875 0.004 0.001171875" rgba="0.652156862745098 0.652156862745098 0.652156862745098 1"/>
+                                <geom class="pad" pos="-0.0020624999999999984 -0.0026 0.019921875" size="0.0006875 0.004 0.001171875" rgba="0.6525490196078432 0.6525490196078432 0.6525490196078432 1"/>
+                                <geom class="pad" pos="-0.0006874999999999989 -0.0026 0.019921875" size="0.0006875 0.004 0.001171875" rgba="0.6529411764705882 0.6529411764705882 0.6529411764705882 1"/>
+                                <geom class="pad" pos="0.0006875000000000006 -0.0026 0.019921875" size="0.0006875 0.004 0.001171875" rgba="0.6533333333333333 0.6533333333333333 0.6533333333333333 1"/>
+                                <geom class="pad" pos="0.0020625 -0.0026 0.019921875" size="0.0006875 0.004 0.001171875" rgba="0.6537254901960784 0.6537254901960784 0.6537254901960784 1"/>
+                                <geom class="pad" pos="0.0034374999999999996 -0.0026 0.019921875" size="0.0006875 0.004 0.001171875" rgba="0.6541176470588235 0.6541176470588235 0.6541176470588235 1"/>
+                                <geom class="pad" pos="0.004812500000000001 -0.0026 0.019921875" size="0.0006875 0.004 0.001171875" rgba="0.6545098039215687 0.6545098039215687 0.6545098039215687 1"/>
+                                <geom class="pad" pos="0.006187500000000002 -0.0026 0.019921875" size="0.0006875 0.004 0.001171875" rgba="0.6549019607843137 0.6549019607843137 0.6549019607843137 1"/>
+                                <geom class="pad" pos="0.0075625 -0.0026 0.019921875" size="0.0006875 0.004 0.001171875" rgba="0.6552941176470588 0.6552941176470588 0.6552941176470588 1"/>
+                                <geom class="pad" pos="0.008937500000000001 -0.0026 0.019921875" size="0.0006875 0.004 0.001171875" rgba="0.6556862745098039 0.6556862745098039 0.6556862745098039 1"/>
+                                <geom class="pad" pos="0.010312499999999999 -0.0026 0.019921875" size="0.0006875 0.004 0.001171875" rgba="0.656078431372549 0.656078431372549 0.656078431372549 1"/>
+                                <geom class="pad" pos="-0.010312499999999999 -0.0026 0.022265624999999997" size="0.0006875 0.004 0.001171875" rgba="0.6564705882352941 0.6564705882352941 0.6564705882352941 1"/>
+                                <geom class="pad" pos="-0.0089375 -0.0026 0.022265624999999997" size="0.0006875 0.004 0.001171875" rgba="0.6568627450980392 0.6568627450980392 0.6568627450980392 1"/>
+                                <geom class="pad" pos="-0.007562499999999999 -0.0026 0.022265624999999997" size="0.0006875 0.004 0.001171875" rgba="0.6572549019607843 0.6572549019607843 0.6572549019607843 1"/>
+                                <geom class="pad" pos="-0.0061874999999999986 -0.0026 0.022265624999999997" size="0.0006875 0.004 0.001171875" rgba="0.6576470588235294 0.6576470588235294 0.6576470588235294 1"/>
+                                <geom class="pad" pos="-0.004812499999999999 -0.0026 0.022265624999999997" size="0.0006875 0.004 0.001171875" rgba="0.6580392156862744 0.6580392156862744 0.6580392156862744 1"/>
+                                <geom class="pad" pos="-0.0034374999999999996 -0.0026 0.022265624999999997" size="0.0006875 0.004 0.001171875" rgba="0.6584313725490196 0.6584313725490196 0.6584313725490196 1"/>
+                                <geom class="pad" pos="-0.0020624999999999984 -0.0026 0.022265624999999997" size="0.0006875 0.004 0.001171875" rgba="0.6588235294117647 0.6588235294117647 0.6588235294117647 1"/>
+                                <geom class="pad" pos="-0.0006874999999999989 -0.0026 0.022265624999999997" size="0.0006875 0.004 0.001171875" rgba="0.6592156862745098 0.6592156862745098 0.6592156862745098 1"/>
+                                <geom class="pad" pos="0.0006875000000000006 -0.0026 0.022265624999999997" size="0.0006875 0.004 0.001171875" rgba="0.6596078431372548 0.6596078431372548 0.6596078431372548 1"/>
+                                <geom class="pad" pos="0.0020625 -0.0026 0.022265624999999997" size="0.0006875 0.004 0.001171875" rgba="0.66 0.66 0.66 1"/>
+                                <geom class="pad" pos="0.0034374999999999996 -0.0026 0.022265624999999997" size="0.0006875 0.004 0.001171875" rgba="0.6603921568627451 0.6603921568627451 0.6603921568627451 1"/>
+                                <geom class="pad" pos="0.004812500000000001 -0.0026 0.022265624999999997" size="0.0006875 0.004 0.001171875" rgba="0.6607843137254902 0.6607843137254902 0.6607843137254902 1"/>
+                                <geom class="pad" pos="0.006187500000000002 -0.0026 0.022265624999999997" size="0.0006875 0.004 0.001171875" rgba="0.6611764705882353 0.6611764705882353 0.6611764705882353 1"/>
+                                <geom class="pad" pos="0.0075625 -0.0026 0.022265624999999997" size="0.0006875 0.004 0.001171875" rgba="0.6615686274509803 0.6615686274509803 0.6615686274509803 1"/>
+                                <geom class="pad" pos="0.008937500000000001 -0.0026 0.022265624999999997" size="0.0006875 0.004 0.001171875" rgba="0.6619607843137255 0.6619607843137255 0.6619607843137255 1"/>
+                                <geom class="pad" pos="0.010312499999999999 -0.0026 0.022265624999999997" size="0.0006875 0.004 0.001171875" rgba="0.6623529411764706 0.6623529411764706 0.6623529411764706 1"/>
+                                <geom class="pad" pos="-0.010312499999999999 -0.0026 0.024609375" size="0.0006875 0.004 0.001171875" rgba="0.6627450980392157 0.6627450980392157 0.6627450980392157 1"/>
+                                <geom class="pad" pos="-0.0089375 -0.0026 0.024609375" size="0.0006875 0.004 0.001171875" rgba="0.6631372549019607 0.6631372549019607 0.6631372549019607 1"/>
+                                <geom class="pad" pos="-0.007562499999999999 -0.0026 0.024609375" size="0.0006875 0.004 0.001171875" rgba="0.6635294117647058 0.6635294117647058 0.6635294117647058 1"/>
+                                <geom class="pad" pos="-0.0061874999999999986 -0.0026 0.024609375" size="0.0006875 0.004 0.001171875" rgba="0.663921568627451 0.663921568627451 0.663921568627451 1"/>
+                                <geom class="pad" pos="-0.004812499999999999 -0.0026 0.024609375" size="0.0006875 0.004 0.001171875" rgba="0.6643137254901961 0.6643137254901961 0.6643137254901961 1"/>
+                                <geom class="pad" pos="-0.0034374999999999996 -0.0026 0.024609375" size="0.0006875 0.004 0.001171875" rgba="0.6647058823529411 0.6647058823529411 0.6647058823529411 1"/>
+                                <geom class="pad" pos="-0.0020624999999999984 -0.0026 0.024609375" size="0.0006875 0.004 0.001171875" rgba="0.6650980392156862 0.6650980392156862 0.6650980392156862 1"/>
+                                <geom class="pad" pos="-0.0006874999999999989 -0.0026 0.024609375" size="0.0006875 0.004 0.001171875" rgba="0.6654901960784314 0.6654901960784314 0.6654901960784314 1"/>
+                                <geom class="pad" pos="0.0006875000000000006 -0.0026 0.024609375" size="0.0006875 0.004 0.001171875" rgba="0.6658823529411765 0.6658823529411765 0.6658823529411765 1"/>
+                                <geom class="pad" pos="0.0020625 -0.0026 0.024609375" size="0.0006875 0.004 0.001171875" rgba="0.6662745098039216 0.6662745098039216 0.6662745098039216 1"/>
+                                <geom class="pad" pos="0.0034374999999999996 -0.0026 0.024609375" size="0.0006875 0.004 0.001171875" rgba="0.6666666666666666 0.6666666666666666 0.6666666666666666 1"/>
+                                <geom class="pad" pos="0.004812500000000001 -0.0026 0.024609375" size="0.0006875 0.004 0.001171875" rgba="0.6670588235294117 0.6670588235294117 0.6670588235294117 1"/>
+                                <geom class="pad" pos="0.006187500000000002 -0.0026 0.024609375" size="0.0006875 0.004 0.001171875" rgba="0.6674509803921569 0.6674509803921569 0.6674509803921569 1"/>
+                                <geom class="pad" pos="0.0075625 -0.0026 0.024609375" size="0.0006875 0.004 0.001171875" rgba="0.667843137254902 0.667843137254902 0.667843137254902 1"/>
+                                <geom class="pad" pos="0.008937500000000001 -0.0026 0.024609375" size="0.0006875 0.004 0.001171875" rgba="0.668235294117647 0.668235294117647 0.668235294117647 1"/>
+                                <geom class="pad" pos="0.010312499999999999 -0.0026 0.024609375" size="0.0006875 0.004 0.001171875" rgba="0.6686274509803921 0.6686274509803921 0.6686274509803921 1"/>
+                                <geom class="pad" pos="-0.010312499999999999 -0.0026 0.026953124999999998" size="0.0006875 0.004 0.001171875" rgba="0.6690196078431372 0.6690196078431372 0.6690196078431372 1"/>
+                                <geom class="pad" pos="-0.0089375 -0.0026 0.026953124999999998" size="0.0006875 0.004 0.001171875" rgba="0.6694117647058824 0.6694117647058824 0.6694117647058824 1"/>
+                                <geom class="pad" pos="-0.007562499999999999 -0.0026 0.026953124999999998" size="0.0006875 0.004 0.001171875" rgba="0.6698039215686274 0.6698039215686274 0.6698039215686274 1"/>
+                                <geom class="pad" pos="-0.0061874999999999986 -0.0026 0.026953124999999998" size="0.0006875 0.004 0.001171875" rgba="0.6701960784313725 0.6701960784313725 0.6701960784313725 1"/>
+                                <geom class="pad" pos="-0.004812499999999999 -0.0026 0.026953124999999998" size="0.0006875 0.004 0.001171875" rgba="0.6705882352941176 0.6705882352941176 0.6705882352941176 1"/>
+                                <geom class="pad" pos="-0.0034374999999999996 -0.0026 0.026953124999999998" size="0.0006875 0.004 0.001171875" rgba="0.6709803921568627 0.6709803921568627 0.6709803921568627 1"/>
+                                <geom class="pad" pos="-0.0020624999999999984 -0.0026 0.026953124999999998" size="0.0006875 0.004 0.001171875" rgba="0.6713725490196079 0.6713725490196079 0.6713725490196079 1"/>
+                                <geom class="pad" pos="-0.0006874999999999989 -0.0026 0.026953124999999998" size="0.0006875 0.004 0.001171875" rgba="0.6717647058823529 0.6717647058823529 0.6717647058823529 1"/>
+                                <geom class="pad" pos="0.0006875000000000006 -0.0026 0.026953124999999998" size="0.0006875 0.004 0.001171875" rgba="0.672156862745098 0.672156862745098 0.672156862745098 1"/>
+                                <geom class="pad" pos="0.0020625 -0.0026 0.026953124999999998" size="0.0006875 0.004 0.001171875" rgba="0.6725490196078431 0.6725490196078431 0.6725490196078431 1"/>
+                                <geom class="pad" pos="0.0034374999999999996 -0.0026 0.026953124999999998" size="0.0006875 0.004 0.001171875" rgba="0.6729411764705883 0.6729411764705883 0.6729411764705883 1"/>
+                                <geom class="pad" pos="0.004812500000000001 -0.0026 0.026953124999999998" size="0.0006875 0.004 0.001171875" rgba="0.6733333333333333 0.6733333333333333 0.6733333333333333 1"/>
+                                <geom class="pad" pos="0.006187500000000002 -0.0026 0.026953124999999998" size="0.0006875 0.004 0.001171875" rgba="0.6737254901960784 0.6737254901960784 0.6737254901960784 1"/>
+                                <geom class="pad" pos="0.0075625 -0.0026 0.026953124999999998" size="0.0006875 0.004 0.001171875" rgba="0.6741176470588235 0.6741176470588235 0.6741176470588235 1"/>
+                                <geom class="pad" pos="0.008937500000000001 -0.0026 0.026953124999999998" size="0.0006875 0.004 0.001171875" rgba="0.6745098039215686 0.6745098039215686 0.6745098039215686 1"/>
+                                <geom class="pad" pos="0.010312499999999999 -0.0026 0.026953124999999998" size="0.0006875 0.004 0.001171875" rgba="0.6749019607843137 0.6749019607843137 0.6749019607843137 1"/>
+                                <geom class="pad" pos="-0.010312499999999999 -0.0026 0.029296874999999997" size="0.0006875 0.004 0.001171875" rgba="0.6752941176470588 0.6752941176470588 0.6752941176470588 1"/>
+                                <geom class="pad" pos="-0.0089375 -0.0026 0.029296874999999997" size="0.0006875 0.004 0.001171875" rgba="0.6756862745098039 0.6756862745098039 0.6756862745098039 1"/>
+                                <geom class="pad" pos="-0.007562499999999999 -0.0026 0.029296874999999997" size="0.0006875 0.004 0.001171875" rgba="0.676078431372549 0.676078431372549 0.676078431372549 1"/>
+                                <geom class="pad" pos="-0.0061874999999999986 -0.0026 0.029296874999999997" size="0.0006875 0.004 0.001171875" rgba="0.6764705882352942 0.6764705882352942 0.6764705882352942 1"/>
+                                <geom class="pad" pos="-0.004812499999999999 -0.0026 0.029296874999999997" size="0.0006875 0.004 0.001171875" rgba="0.6768627450980392 0.6768627450980392 0.6768627450980392 1"/>
+                                <geom class="pad" pos="-0.0034374999999999996 -0.0026 0.029296874999999997" size="0.0006875 0.004 0.001171875" rgba="0.6772549019607843 0.6772549019607843 0.6772549019607843 1"/>
+                                <geom class="pad" pos="-0.0020624999999999984 -0.0026 0.029296874999999997" size="0.0006875 0.004 0.001171875" rgba="0.6776470588235294 0.6776470588235294 0.6776470588235294 1"/>
+                                <geom class="pad" pos="-0.0006874999999999989 -0.0026 0.029296874999999997" size="0.0006875 0.004 0.001171875" rgba="0.6780392156862745 0.6780392156862745 0.6780392156862745 1"/>
+                                <geom class="pad" pos="0.0006875000000000006 -0.0026 0.029296874999999997" size="0.0006875 0.004 0.001171875" rgba="0.6784313725490196 0.6784313725490196 0.6784313725490196 1"/>
+                                <geom class="pad" pos="0.0020625 -0.0026 0.029296874999999997" size="0.0006875 0.004 0.001171875" rgba="0.6788235294117647 0.6788235294117647 0.6788235294117647 1"/>
+                                <geom class="pad" pos="0.0034374999999999996 -0.0026 0.029296874999999997" size="0.0006875 0.004 0.001171875" rgba="0.6792156862745098 0.6792156862745098 0.6792156862745098 1"/>
+                                <geom class="pad" pos="0.004812500000000001 -0.0026 0.029296874999999997" size="0.0006875 0.004 0.001171875" rgba="0.6796078431372549 0.6796078431372549 0.6796078431372549 1"/>
+                                <geom class="pad" pos="0.006187500000000002 -0.0026 0.029296874999999997" size="0.0006875 0.004 0.001171875" rgba="0.6799999999999999 0.6799999999999999 0.6799999999999999 1"/>
+                                <geom class="pad" pos="0.0075625 -0.0026 0.029296874999999997" size="0.0006875 0.004 0.001171875" rgba="0.6803921568627451 0.6803921568627451 0.6803921568627451 1"/>
+                                <geom class="pad" pos="0.008937500000000001 -0.0026 0.029296874999999997" size="0.0006875 0.004 0.001171875" rgba="0.6807843137254902 0.6807843137254902 0.6807843137254902 1"/>
+                                <geom class="pad" pos="0.010312499999999999 -0.0026 0.029296874999999997" size="0.0006875 0.004 0.001171875" rgba="0.6811764705882353 0.6811764705882353 0.6811764705882353 1"/>
+                                <geom class="pad" pos="-0.010312499999999999 -0.0026 0.031640625" size="0.0006875 0.004 0.001171875" rgba="0.6815686274509803 0.6815686274509803 0.6815686274509803 1"/>
+                                <geom class="pad" pos="-0.0089375 -0.0026 0.031640625" size="0.0006875 0.004 0.001171875" rgba="0.6819607843137254 0.6819607843137254 0.6819607843137254 1"/>
+                                <geom class="pad" pos="-0.007562499999999999 -0.0026 0.031640625" size="0.0006875 0.004 0.001171875" rgba="0.6823529411764706 0.6823529411764706 0.6823529411764706 1"/>
+                                <geom class="pad" pos="-0.0061874999999999986 -0.0026 0.031640625" size="0.0006875 0.004 0.001171875" rgba="0.6827450980392157 0.6827450980392157 0.6827450980392157 1"/>
+                                <geom class="pad" pos="-0.004812499999999999 -0.0026 0.031640625" size="0.0006875 0.004 0.001171875" rgba="0.6831372549019608 0.6831372549019608 0.6831372549019608 1"/>
+                                <geom class="pad" pos="-0.0034374999999999996 -0.0026 0.031640625" size="0.0006875 0.004 0.001171875" rgba="0.6835294117647058 0.6835294117647058 0.6835294117647058 1"/>
+                                <geom class="pad" pos="-0.0020624999999999984 -0.0026 0.031640625" size="0.0006875 0.004 0.001171875" rgba="0.6839215686274509 0.6839215686274509 0.6839215686274509 1"/>
+                                <geom class="pad" pos="-0.0006874999999999989 -0.0026 0.031640625" size="0.0006875 0.004 0.001171875" rgba="0.6843137254901961 0.6843137254901961 0.6843137254901961 1"/>
+                                <geom class="pad" pos="0.0006875000000000006 -0.0026 0.031640625" size="0.0006875 0.004 0.001171875" rgba="0.6847058823529412 0.6847058823529412 0.6847058823529412 1"/>
+                                <geom class="pad" pos="0.0020625 -0.0026 0.031640625" size="0.0006875 0.004 0.001171875" rgba="0.6850980392156862 0.6850980392156862 0.6850980392156862 1"/>
+                                <geom class="pad" pos="0.0034374999999999996 -0.0026 0.031640625" size="0.0006875 0.004 0.001171875" rgba="0.6854901960784313 0.6854901960784313 0.6854901960784313 1"/>
+                                <geom class="pad" pos="0.004812500000000001 -0.0026 0.031640625" size="0.0006875 0.004 0.001171875" rgba="0.6858823529411765 0.6858823529411765 0.6858823529411765 1"/>
+                                <geom class="pad" pos="0.006187500000000002 -0.0026 0.031640625" size="0.0006875 0.004 0.001171875" rgba="0.6862745098039216 0.6862745098039216 0.6862745098039216 1"/>
+                                <geom class="pad" pos="0.0075625 -0.0026 0.031640625" size="0.0006875 0.004 0.001171875" rgba="0.6866666666666666 0.6866666666666666 0.6866666666666666 1"/>
+                                <geom class="pad" pos="0.008937500000000001 -0.0026 0.031640625" size="0.0006875 0.004 0.001171875" rgba="0.6870588235294117 0.6870588235294117 0.6870588235294117 1"/>
+                                <geom class="pad" pos="0.010312499999999999 -0.0026 0.031640625" size="0.0006875 0.004 0.001171875" rgba="0.6874509803921568 0.6874509803921568 0.6874509803921568 1"/>
+                                <geom class="pad" pos="-0.010312499999999999 -0.0026 0.033984375000000004" size="0.0006875 0.004 0.001171875" rgba="0.687843137254902 0.687843137254902 0.687843137254902 1"/>
+                                <geom class="pad" pos="-0.0089375 -0.0026 0.033984375000000004" size="0.0006875 0.004 0.001171875" rgba="0.6882352941176471 0.6882352941176471 0.6882352941176471 1"/>
+                                <geom class="pad" pos="-0.007562499999999999 -0.0026 0.033984375000000004" size="0.0006875 0.004 0.001171875" rgba="0.6886274509803921 0.6886274509803921 0.6886274509803921 1"/>
+                                <geom class="pad" pos="-0.0061874999999999986 -0.0026 0.033984375000000004" size="0.0006875 0.004 0.001171875" rgba="0.6890196078431372 0.6890196078431372 0.6890196078431372 1"/>
+                                <geom class="pad" pos="-0.004812499999999999 -0.0026 0.033984375000000004" size="0.0006875 0.004 0.001171875" rgba="0.6894117647058824 0.6894117647058824 0.6894117647058824 1"/>
+                                <geom class="pad" pos="-0.0034374999999999996 -0.0026 0.033984375000000004" size="0.0006875 0.004 0.001171875" rgba="0.6898039215686275 0.6898039215686275 0.6898039215686275 1"/>
+                                <geom class="pad" pos="-0.0020624999999999984 -0.0026 0.033984375000000004" size="0.0006875 0.004 0.001171875" rgba="0.6901960784313725 0.6901960784313725 0.6901960784313725 1"/>
+                                <geom class="pad" pos="-0.0006874999999999989 -0.0026 0.033984375000000004" size="0.0006875 0.004 0.001171875" rgba="0.6905882352941176 0.6905882352941176 0.6905882352941176 1"/>
+                                <geom class="pad" pos="0.0006875000000000006 -0.0026 0.033984375000000004" size="0.0006875 0.004 0.001171875" rgba="0.6909803921568627 0.6909803921568627 0.6909803921568627 1"/>
+                                <geom class="pad" pos="0.0020625 -0.0026 0.033984375000000004" size="0.0006875 0.004 0.001171875" rgba="0.6913725490196079 0.6913725490196079 0.6913725490196079 1"/>
+                                <geom class="pad" pos="0.0034374999999999996 -0.0026 0.033984375000000004" size="0.0006875 0.004 0.001171875" rgba="0.691764705882353 0.691764705882353 0.691764705882353 1"/>
+                                <geom class="pad" pos="0.004812500000000001 -0.0026 0.033984375000000004" size="0.0006875 0.004 0.001171875" rgba="0.692156862745098 0.692156862745098 0.692156862745098 1"/>
+                                <geom class="pad" pos="0.006187500000000002 -0.0026 0.033984375000000004" size="0.0006875 0.004 0.001171875" rgba="0.6925490196078431 0.6925490196078431 0.6925490196078431 1"/>
+                                <geom class="pad" pos="0.0075625 -0.0026 0.033984375000000004" size="0.0006875 0.004 0.001171875" rgba="0.6929411764705882 0.6929411764705882 0.6929411764705882 1"/>
+                                <geom class="pad" pos="0.008937500000000001 -0.0026 0.033984375000000004" size="0.0006875 0.004 0.001171875" rgba="0.6933333333333334 0.6933333333333334 0.6933333333333334 1"/>
+                                <geom class="pad" pos="0.010312499999999999 -0.0026 0.033984375000000004" size="0.0006875 0.004 0.001171875" rgba="0.6937254901960784 0.6937254901960784 0.6937254901960784 1"/>
+                                <geom class="pad" pos="-0.010312499999999999 -0.0026 0.036328125" size="0.0006875 0.004 0.001171875" rgba="0.6941176470588235 0.6941176470588235 0.6941176470588235 1"/>
+                                <geom class="pad" pos="-0.0089375 -0.0026 0.036328125" size="0.0006875 0.004 0.001171875" rgba="0.6945098039215686 0.6945098039215686 0.6945098039215686 1"/>
+                                <geom class="pad" pos="-0.007562499999999999 -0.0026 0.036328125" size="0.0006875 0.004 0.001171875" rgba="0.6949019607843137 0.6949019607843137 0.6949019607843137 1"/>
+                                <geom class="pad" pos="-0.0061874999999999986 -0.0026 0.036328125" size="0.0006875 0.004 0.001171875" rgba="0.6952941176470588 0.6952941176470588 0.6952941176470588 1"/>
+                                <geom class="pad" pos="-0.004812499999999999 -0.0026 0.036328125" size="0.0006875 0.004 0.001171875" rgba="0.6956862745098039 0.6956862745098039 0.6956862745098039 1"/>
+                                <geom class="pad" pos="-0.0034374999999999996 -0.0026 0.036328125" size="0.0006875 0.004 0.001171875" rgba="0.696078431372549 0.696078431372549 0.696078431372549 1"/>
+                                <geom class="pad" pos="-0.0020624999999999984 -0.0026 0.036328125" size="0.0006875 0.004 0.001171875" rgba="0.6964705882352941 0.6964705882352941 0.6964705882352941 1"/>
+                                <geom class="pad" pos="-0.0006874999999999989 -0.0026 0.036328125" size="0.0006875 0.004 0.001171875" rgba="0.6968627450980392 0.6968627450980392 0.6968627450980392 1"/>
+                                <geom class="pad" pos="0.0006875000000000006 -0.0026 0.036328125" size="0.0006875 0.004 0.001171875" rgba="0.6972549019607843 0.6972549019607843 0.6972549019607843 1"/>
+                                <geom class="pad" pos="0.0020625 -0.0026 0.036328125" size="0.0006875 0.004 0.001171875" rgba="0.6976470588235294 0.6976470588235294 0.6976470588235294 1"/>
+                                <geom class="pad" pos="0.0034374999999999996 -0.0026 0.036328125" size="0.0006875 0.004 0.001171875" rgba="0.6980392156862745 0.6980392156862745 0.6980392156862745 1"/>
+                                <geom class="pad" pos="0.004812500000000001 -0.0026 0.036328125" size="0.0006875 0.004 0.001171875" rgba="0.6984313725490195 0.6984313725490195 0.6984313725490195 1"/>
+                                <geom class="pad" pos="0.006187500000000002 -0.0026 0.036328125" size="0.0006875 0.004 0.001171875" rgba="0.6988235294117647 0.6988235294117647 0.6988235294117647 1"/>
+                                <geom class="pad" pos="0.0075625 -0.0026 0.036328125" size="0.0006875 0.004 0.001171875" rgba="0.6992156862745098 0.6992156862745098 0.6992156862745098 1"/>
+                                <geom class="pad" pos="0.008937500000000001 -0.0026 0.036328125" size="0.0006875 0.004 0.001171875" rgba="0.6996078431372549 0.6996078431372549 0.6996078431372549 1"/>
+                                <geom class="pad" pos="0.010312499999999999 -0.0026 0.036328125" size="0.0006875 0.004 0.001171875" rgba="0.7 0.7 0.7 1"/>
+                                <geom class="visual" mesh="pad"/>
+                                <body name="right_silicone_pad" gravcomp="1">
+                                  <geom class="visual" mesh="silicone_pad" material="black" group="4"/>
+                                  <site name="finger_right" pos="0 -0.007 0.018" zaxis="1 0 0" rgba="1 0 0 0" group="5"/>
+                                  <camera name="tactile_camera_right" pos="0 0.018 0.018" zaxis="0 1 0" fovy="60"/>
+                                </body>
+                            </body>
+                            </body>
+                          </body>
+                          <!-- Left-hand side 4-bar linkage -->
+                          <body name="left_driver" pos="0 -0.0306011 0.054904" quat="0 0 0 1" gravcomp="1">
+                            <inertial mass="0.00899563" pos="0 0.0177547 0.00107314" quat="0.681301 0.732003 0 0" diaginertia="1.72352e-06 1.60906e-06 3.22006e-07"/>
+                            <joint name="left_driver_joint" class="driver"/>
+                            <geom class="visual" mesh="driver" material="gray"/>
+                            <geom class="collision" mesh="driver"/>
+                            <body name="left_coupler" pos="0 0.0315 -0.0041" gravcomp="1">
+                              <inertial mass="0.0140974" pos="0 0.00301209 0.0232175" quat="0.705636 -0.0455904 0.0455904 0.705636" diaginertia="4.16206e-06 3.52216e-06 8.88131e-07"/>
+                              <joint name="left_coupler_joint" class="coupler"/>
+                              <geom class="visual" mesh="coupler" material="black"/>
+                              <geom class="collision" mesh="coupler"/>
+                            </body>
+                          </body>
+                          <body name="left_spring_link" pos="0 -0.0132 0.0609" quat="0 0 0 1" gravcomp="1">
+                            <inertial mass="0.0221642" pos="-8.65005e-09 0.0181624 0.0212658" quat="0.663403 -0.244737 0.244737 0.663403" diaginertia="8.96853e-06 6.71733e-06 2.63931e-06"/>
+                            <joint name="left_spring_link_joint" class="spring_link"/>
+                            <geom class="visual" mesh="spring_link" material="black"/>
+                            <geom class="collision" mesh="spring_link"/>
+                            <body name="left_follower" pos="0 0.055 0.0375" gravcomp="1">
+                              <inertial mass="0.0125222" pos="0 -0.011046 0.0124786" quat="1 0.1664 0 0" diaginertia="2.67415e-06 2.4559e-06 6.02031e-07"/>
+                              <joint name="left_follower_joint" class="follower"/>
+                              <geom class="visual" mesh="follower" material="black"/>
+                              <geom class="collision" mesh="follower"/>
+                              <body name="left_pad" pos="0 -0.0189 0.01352" gravcomp="1">
+                                <!-- <body name="test" pos="0 -0.0026 0" gravcomp="1">
+                                  <geom name="test2" size="0.01 0.004 0.01" type="box" mass="0.01" rgba="0 1 0 1"/>
+                                </body> -->
+                                <geom class="pad" pos="-0.010312499999999999 -0.0026 0.001171875" size="0.0006875 0.004 0.001171875" rgba="0.6 0.6 0.6 1"/>
+                                <geom class="pad" pos="-0.0089375 -0.0026 0.001171875" size="0.0006875 0.004 0.001171875" rgba="0.600392156862745 0.600392156862745 0.600392156862745 1"/>
+                                <geom class="pad" pos="-0.007562499999999999 -0.0026 0.001171875" size="0.0006875 0.004 0.001171875" rgba="0.6007843137254901 0.6007843137254901 0.6007843137254901 1"/>
+                                <geom class="pad" pos="-0.0061874999999999986 -0.0026 0.001171875" size="0.0006875 0.004 0.001171875" rgba="0.6011764705882353 0.6011764705882353 0.6011764705882353 1"/>
+                                <geom class="pad" pos="-0.004812499999999999 -0.0026 0.001171875" size="0.0006875 0.004 0.001171875" rgba="0.6015686274509804 0.6015686274509804 0.6015686274509804 1"/>
+                                <geom class="pad" pos="-0.0034374999999999996 -0.0026 0.001171875" size="0.0006875 0.004 0.001171875" rgba="0.6019607843137255 0.6019607843137255 0.6019607843137255 1"/>
+                                <geom class="pad" pos="-0.0020624999999999984 -0.0026 0.001171875" size="0.0006875 0.004 0.001171875" rgba="0.6023529411764705 0.6023529411764705 0.6023529411764705 1"/>
+                                <geom class="pad" pos="-0.0006874999999999989 -0.0026 0.001171875" size="0.0006875 0.004 0.001171875" rgba="0.6027450980392156 0.6027450980392156 0.6027450980392156 1"/>
+                                <geom class="pad" pos="0.0006875000000000006 -0.0026 0.001171875" size="0.0006875 0.004 0.001171875" rgba="0.6031372549019608 0.6031372549019608 0.6031372549019608 1"/>
+                                <geom class="pad" pos="0.0020625 -0.0026 0.001171875" size="0.0006875 0.004 0.001171875" rgba="0.6035294117647059 0.6035294117647059 0.6035294117647059 1"/>
+                                <geom class="pad" pos="0.0034374999999999996 -0.0026 0.001171875" size="0.0006875 0.004 0.001171875" rgba="0.6039215686274509 0.6039215686274509 0.6039215686274509 1"/>
+                                <geom class="pad" pos="0.004812500000000001 -0.0026 0.001171875" size="0.0006875 0.004 0.001171875" rgba="0.604313725490196 0.604313725490196 0.604313725490196 1"/>
+                                <geom class="pad" pos="0.006187500000000002 -0.0026 0.001171875" size="0.0006875 0.004 0.001171875" rgba="0.6047058823529412 0.6047058823529412 0.6047058823529412 1"/>
+                                <geom class="pad" pos="0.0075625 -0.0026 0.001171875" size="0.0006875 0.004 0.001171875" rgba="0.6050980392156863 0.6050980392156863 0.6050980392156863 1"/>
+                                <geom class="pad" pos="0.008937500000000001 -0.0026 0.001171875" size="0.0006875 0.004 0.001171875" rgba="0.6054901960784314 0.6054901960784314 0.6054901960784314 1"/>
+                                <geom class="pad" pos="0.010312499999999999 -0.0026 0.001171875" size="0.0006875 0.004 0.001171875" rgba="0.6058823529411764 0.6058823529411764 0.6058823529411764 1"/>
+                                <geom class="pad" pos="-0.010312499999999999 -0.0026 0.0035156249999999997" size="0.0006875 0.004 0.001171875" rgba="0.6062745098039215 0.6062745098039215 0.6062745098039215 1"/>
+                                <geom class="pad" pos="-0.0089375 -0.0026 0.0035156249999999997" size="0.0006875 0.004 0.001171875" rgba="0.6066666666666667 0.6066666666666667 0.6066666666666667 1"/>
+                                <geom class="pad" pos="-0.007562499999999999 -0.0026 0.0035156249999999997" size="0.0006875 0.004 0.001171875" rgba="0.6070588235294118 0.6070588235294118 0.6070588235294118 1"/>
+                                <geom class="pad" pos="-0.0061874999999999986 -0.0026 0.0035156249999999997" size="0.0006875 0.004 0.001171875" rgba="0.6074509803921568 0.6074509803921568 0.6074509803921568 1"/>
+                                <geom class="pad" pos="-0.004812499999999999 -0.0026 0.0035156249999999997" size="0.0006875 0.004 0.001171875" rgba="0.6078431372549019 0.6078431372549019 0.6078431372549019 1"/>
+                                <geom class="pad" pos="-0.0034374999999999996 -0.0026 0.0035156249999999997" size="0.0006875 0.004 0.001171875" rgba="0.608235294117647 0.608235294117647 0.608235294117647 1"/>
+                                <geom class="pad" pos="-0.0020624999999999984 -0.0026 0.0035156249999999997" size="0.0006875 0.004 0.001171875" rgba="0.6086274509803922 0.6086274509803922 0.6086274509803922 1"/>
+                                <geom class="pad" pos="-0.0006874999999999989 -0.0026 0.0035156249999999997" size="0.0006875 0.004 0.001171875" rgba="0.6090196078431372 0.6090196078431372 0.6090196078431372 1"/>
+                                <geom class="pad" pos="0.0006875000000000006 -0.0026 0.0035156249999999997" size="0.0006875 0.004 0.001171875" rgba="0.6094117647058823 0.6094117647058823 0.6094117647058823 1"/>
+                                <geom class="pad" pos="0.0020625 -0.0026 0.0035156249999999997" size="0.0006875 0.004 0.001171875" rgba="0.6098039215686274 0.6098039215686274 0.6098039215686274 1"/>
+                                <geom class="pad" pos="0.0034374999999999996 -0.0026 0.0035156249999999997" size="0.0006875 0.004 0.001171875" rgba="0.6101960784313726 0.6101960784313726 0.6101960784313726 1"/>
+                                <geom class="pad" pos="0.004812500000000001 -0.0026 0.0035156249999999997" size="0.0006875 0.004 0.001171875" rgba="0.6105882352941177 0.6105882352941177 0.6105882352941177 1"/>
+                                <geom class="pad" pos="0.006187500000000002 -0.0026 0.0035156249999999997" size="0.0006875 0.004 0.001171875" rgba="0.6109803921568627 0.6109803921568627 0.6109803921568627 1"/>
+                                <geom class="pad" pos="0.0075625 -0.0026 0.0035156249999999997" size="0.0006875 0.004 0.001171875" rgba="0.6113725490196078 0.6113725490196078 0.6113725490196078 1"/>
+                                <geom class="pad" pos="0.008937500000000001 -0.0026 0.0035156249999999997" size="0.0006875 0.004 0.001171875" rgba="0.6117647058823529 0.6117647058823529 0.6117647058823529 1"/>
+                                <geom class="pad" pos="0.010312499999999999 -0.0026 0.0035156249999999997" size="0.0006875 0.004 0.001171875" rgba="0.6121568627450981 0.6121568627450981 0.6121568627450981 1"/>
+                                <geom class="pad" pos="-0.010312499999999999 -0.0026 0.005859375" size="0.0006875 0.004 0.001171875" rgba="0.6125490196078431 0.6125490196078431 0.6125490196078431 1"/>
+                                <geom class="pad" pos="-0.0089375 -0.0026 0.005859375" size="0.0006875 0.004 0.001171875" rgba="0.6129411764705882 0.6129411764705882 0.6129411764705882 1"/>
+                                <geom class="pad" pos="-0.007562499999999999 -0.0026 0.005859375" size="0.0006875 0.004 0.001171875" rgba="0.6133333333333333 0.6133333333333333 0.6133333333333333 1"/>
+                                <geom class="pad" pos="-0.0061874999999999986 -0.0026 0.005859375" size="0.0006875 0.004 0.001171875" rgba="0.6137254901960784 0.6137254901960784 0.6137254901960784 1"/>
+                                <geom class="pad" pos="-0.004812499999999999 -0.0026 0.005859375" size="0.0006875 0.004 0.001171875" rgba="0.6141176470588235 0.6141176470588235 0.6141176470588235 1"/>
+                                <geom class="pad" pos="-0.0034374999999999996 -0.0026 0.005859375" size="0.0006875 0.004 0.001171875" rgba="0.6145098039215686 0.6145098039215686 0.6145098039215686 1"/>
+                                <geom class="pad" pos="-0.0020624999999999984 -0.0026 0.005859375" size="0.0006875 0.004 0.001171875" rgba="0.6149019607843137 0.6149019607843137 0.6149019607843137 1"/>
+                                <geom class="pad" pos="-0.0006874999999999989 -0.0026 0.005859375" size="0.0006875 0.004 0.001171875" rgba="0.6152941176470588 0.6152941176470588 0.6152941176470588 1"/>
+                                <geom class="pad" pos="0.0006875000000000006 -0.0026 0.005859375" size="0.0006875 0.004 0.001171875" rgba="0.615686274509804 0.615686274509804 0.615686274509804 1"/>
+                                <geom class="pad" pos="0.0020625 -0.0026 0.005859375" size="0.0006875 0.004 0.001171875" rgba="0.616078431372549 0.616078431372549 0.616078431372549 1"/>
+                                <geom class="pad" pos="0.0034374999999999996 -0.0026 0.005859375" size="0.0006875 0.004 0.001171875" rgba="0.6164705882352941 0.6164705882352941 0.6164705882352941 1"/>
+                                <geom class="pad" pos="0.004812500000000001 -0.0026 0.005859375" size="0.0006875 0.004 0.001171875" rgba="0.6168627450980392 0.6168627450980392 0.6168627450980392 1"/>
+                                <geom class="pad" pos="0.006187500000000002 -0.0026 0.005859375" size="0.0006875 0.004 0.001171875" rgba="0.6172549019607843 0.6172549019607843 0.6172549019607843 1"/>
+                                <geom class="pad" pos="0.0075625 -0.0026 0.005859375" size="0.0006875 0.004 0.001171875" rgba="0.6176470588235294 0.6176470588235294 0.6176470588235294 1"/>
+                                <geom class="pad" pos="0.008937500000000001 -0.0026 0.005859375" size="0.0006875 0.004 0.001171875" rgba="0.6180392156862745 0.6180392156862745 0.6180392156862745 1"/>
+                                <geom class="pad" pos="0.010312499999999999 -0.0026 0.005859375" size="0.0006875 0.004 0.001171875" rgba="0.6184313725490196 0.6184313725490196 0.6184313725490196 1"/>
+                                <geom class="pad" pos="-0.010312499999999999 -0.0026 0.008203124999999999" size="0.0006875 0.004 0.001171875" rgba="0.6188235294117647 0.6188235294117647 0.6188235294117647 1"/>
+                                <geom class="pad" pos="-0.0089375 -0.0026 0.008203124999999999" size="0.0006875 0.004 0.001171875" rgba="0.6192156862745097 0.6192156862745097 0.6192156862745097 1"/>
+                                <geom class="pad" pos="-0.007562499999999999 -0.0026 0.008203124999999999" size="0.0006875 0.004 0.001171875" rgba="0.6196078431372549 0.6196078431372549 0.6196078431372549 1"/>
+                                <geom class="pad" pos="-0.0061874999999999986 -0.0026 0.008203124999999999" size="0.0006875 0.004 0.001171875" rgba="0.62 0.62 0.62 1"/>
+                                <geom class="pad" pos="-0.004812499999999999 -0.0026 0.008203124999999999" size="0.0006875 0.004 0.001171875" rgba="0.6203921568627451 0.6203921568627451 0.6203921568627451 1"/>
+                                <geom class="pad" pos="-0.0034374999999999996 -0.0026 0.008203124999999999" size="0.0006875 0.004 0.001171875" rgba="0.6207843137254901 0.6207843137254901 0.6207843137254901 1"/>
+                                <geom class="pad" pos="-0.0020624999999999984 -0.0026 0.008203124999999999" size="0.0006875 0.004 0.001171875" rgba="0.6211764705882352 0.6211764705882352 0.6211764705882352 1"/>
+                                <geom class="pad" pos="-0.0006874999999999989 -0.0026 0.008203124999999999" size="0.0006875 0.004 0.001171875" rgba="0.6215686274509804 0.6215686274509804 0.6215686274509804 1"/>
+                                <geom class="pad" pos="0.0006875000000000006 -0.0026 0.008203124999999999" size="0.0006875 0.004 0.001171875" rgba="0.6219607843137255 0.6219607843137255 0.6219607843137255 1"/>
+                                <geom class="pad" pos="0.0020625 -0.0026 0.008203124999999999" size="0.0006875 0.004 0.001171875" rgba="0.6223529411764706 0.6223529411764706 0.6223529411764706 1"/>
+                                <geom class="pad" pos="0.0034374999999999996 -0.0026 0.008203124999999999" size="0.0006875 0.004 0.001171875" rgba="0.6227450980392156 0.6227450980392156 0.6227450980392156 1"/>
+                                <geom class="pad" pos="0.004812500000000001 -0.0026 0.008203124999999999" size="0.0006875 0.004 0.001171875" rgba="0.6231372549019608 0.6231372549019608 0.6231372549019608 1"/>
+                                <geom class="pad" pos="0.006187500000000002 -0.0026 0.008203124999999999" size="0.0006875 0.004 0.001171875" rgba="0.6235294117647059 0.6235294117647059 0.6235294117647059 1"/>
+                                <geom class="pad" pos="0.0075625 -0.0026 0.008203124999999999" size="0.0006875 0.004 0.001171875" rgba="0.623921568627451 0.623921568627451 0.623921568627451 1"/>
+                                <geom class="pad" pos="0.008937500000000001 -0.0026 0.008203124999999999" size="0.0006875 0.004 0.001171875" rgba="0.624313725490196 0.624313725490196 0.624313725490196 1"/>
+                                <geom class="pad" pos="0.010312499999999999 -0.0026 0.008203124999999999" size="0.0006875 0.004 0.001171875" rgba="0.6247058823529411 0.6247058823529411 0.6247058823529411 1"/>
+                                <geom class="pad" pos="-0.010312499999999999 -0.0026 0.010546874999999999" size="0.0006875 0.004 0.001171875" rgba="0.6250980392156863 0.6250980392156863 0.6250980392156863 1"/>
+                                <geom class="pad" pos="-0.0089375 -0.0026 0.010546874999999999" size="0.0006875 0.004 0.001171875" rgba="0.6254901960784314 0.6254901960784314 0.6254901960784314 1"/>
+                                <geom class="pad" pos="-0.007562499999999999 -0.0026 0.010546874999999999" size="0.0006875 0.004 0.001171875" rgba="0.6258823529411764 0.6258823529411764 0.6258823529411764 1"/>
+                                <geom class="pad" pos="-0.0061874999999999986 -0.0026 0.010546874999999999" size="0.0006875 0.004 0.001171875" rgba="0.6262745098039215 0.6262745098039215 0.6262745098039215 1"/>
+                                <geom class="pad" pos="-0.004812499999999999 -0.0026 0.010546874999999999" size="0.0006875 0.004 0.001171875" rgba="0.6266666666666666 0.6266666666666666 0.6266666666666666 1"/>
+                                <geom class="pad" pos="-0.0034374999999999996 -0.0026 0.010546874999999999" size="0.0006875 0.004 0.001171875" rgba="0.6270588235294118 0.6270588235294118 0.6270588235294118 1"/>
+                                <geom class="pad" pos="-0.0020624999999999984 -0.0026 0.010546874999999999" size="0.0006875 0.004 0.001171875" rgba="0.6274509803921569 0.6274509803921569 0.6274509803921569 1"/>
+                                <geom class="pad" pos="-0.0006874999999999989 -0.0026 0.010546874999999999" size="0.0006875 0.004 0.001171875" rgba="0.6278431372549019 0.6278431372549019 0.6278431372549019 1"/>
+                                <geom class="pad" pos="0.0006875000000000006 -0.0026 0.010546874999999999" size="0.0006875 0.004 0.001171875" rgba="0.628235294117647 0.628235294117647 0.628235294117647 1"/>
+                                <geom class="pad" pos="0.0020625 -0.0026 0.010546874999999999" size="0.0006875 0.004 0.001171875" rgba="0.6286274509803922 0.6286274509803922 0.6286274509803922 1"/>
+                                <geom class="pad" pos="0.0034374999999999996 -0.0026 0.010546874999999999" size="0.0006875 0.004 0.001171875" rgba="0.6290196078431373 0.6290196078431373 0.6290196078431373 1"/>
+                                <geom class="pad" pos="0.004812500000000001 -0.0026 0.010546874999999999" size="0.0006875 0.004 0.001171875" rgba="0.6294117647058823 0.6294117647058823 0.6294117647058823 1"/>
+                                <geom class="pad" pos="0.006187500000000002 -0.0026 0.010546874999999999" size="0.0006875 0.004 0.001171875" rgba="0.6298039215686274 0.6298039215686274 0.6298039215686274 1"/>
+                                <geom class="pad" pos="0.0075625 -0.0026 0.010546874999999999" size="0.0006875 0.004 0.001171875" rgba="0.6301960784313725 0.6301960784313725 0.6301960784313725 1"/>
+                                <geom class="pad" pos="0.008937500000000001 -0.0026 0.010546874999999999" size="0.0006875 0.004 0.001171875" rgba="0.6305882352941177 0.6305882352941177 0.6305882352941177 1"/>
+                                <geom class="pad" pos="0.010312499999999999 -0.0026 0.010546874999999999" size="0.0006875 0.004 0.001171875" rgba="0.6309803921568627 0.6309803921568627 0.6309803921568627 1"/>
+                                <geom class="pad" pos="-0.010312499999999999 -0.0026 0.012890625" size="0.0006875 0.004 0.001171875" rgba="0.6313725490196078 0.6313725490196078 0.6313725490196078 1"/>
+                                <geom class="pad" pos="-0.0089375 -0.0026 0.012890625" size="0.0006875 0.004 0.001171875" rgba="0.6317647058823529 0.6317647058823529 0.6317647058823529 1"/>
+                                <geom class="pad" pos="-0.007562499999999999 -0.0026 0.012890625" size="0.0006875 0.004 0.001171875" rgba="0.632156862745098 0.632156862745098 0.632156862745098 1"/>
+                                <geom class="pad" pos="-0.0061874999999999986 -0.0026 0.012890625" size="0.0006875 0.004 0.001171875" rgba="0.6325490196078432 0.6325490196078432 0.6325490196078432 1"/>
+                                <geom class="pad" pos="-0.004812499999999999 -0.0026 0.012890625" size="0.0006875 0.004 0.001171875" rgba="0.6329411764705882 0.6329411764705882 0.6329411764705882 1"/>
+                                <geom class="pad" pos="-0.0034374999999999996 -0.0026 0.012890625" size="0.0006875 0.004 0.001171875" rgba="0.6333333333333333 0.6333333333333333 0.6333333333333333 1"/>
+                                <geom class="pad" pos="-0.0020624999999999984 -0.0026 0.012890625" size="0.0006875 0.004 0.001171875" rgba="0.6337254901960784 0.6337254901960784 0.6337254901960784 1"/>
+                                <geom class="pad" pos="-0.0006874999999999989 -0.0026 0.012890625" size="0.0006875 0.004 0.001171875" rgba="0.6341176470588235 0.6341176470588235 0.6341176470588235 1"/>
+                                <geom class="pad" pos="0.0006875000000000006 -0.0026 0.012890625" size="0.0006875 0.004 0.001171875" rgba="0.6345098039215686 0.6345098039215686 0.6345098039215686 1"/>
+                                <geom class="pad" pos="0.0020625 -0.0026 0.012890625" size="0.0006875 0.004 0.001171875" rgba="0.6349019607843137 0.6349019607843137 0.6349019607843137 1"/>
+                                <geom class="pad" pos="0.0034374999999999996 -0.0026 0.012890625" size="0.0006875 0.004 0.001171875" rgba="0.6352941176470588 0.6352941176470588 0.6352941176470588 1"/>
+                                <geom class="pad" pos="0.004812500000000001 -0.0026 0.012890625" size="0.0006875 0.004 0.001171875" rgba="0.6356862745098039 0.6356862745098039 0.6356862745098039 1"/>
+                                <geom class="pad" pos="0.006187500000000002 -0.0026 0.012890625" size="0.0006875 0.004 0.001171875" rgba="0.636078431372549 0.636078431372549 0.636078431372549 1"/>
+                                <geom class="pad" pos="0.0075625 -0.0026 0.012890625" size="0.0006875 0.004 0.001171875" rgba="0.6364705882352941 0.6364705882352941 0.6364705882352941 1"/>
+                                <geom class="pad" pos="0.008937500000000001 -0.0026 0.012890625" size="0.0006875 0.004 0.001171875" rgba="0.6368627450980392 0.6368627450980392 0.6368627450980392 1"/>
+                                <geom class="pad" pos="0.010312499999999999 -0.0026 0.012890625" size="0.0006875 0.004 0.001171875" rgba="0.6372549019607843 0.6372549019607843 0.6372549019607843 1"/>
+                                <geom class="pad" pos="-0.010312499999999999 -0.0026 0.015234374999999998" size="0.0006875 0.004 0.001171875" rgba="0.6376470588235293 0.6376470588235293 0.6376470588235293 1"/>
+                                <geom class="pad" pos="-0.0089375 -0.0026 0.015234374999999998" size="0.0006875 0.004 0.001171875" rgba="0.6380392156862745 0.6380392156862745 0.6380392156862745 1"/>
+                                <geom class="pad" pos="-0.007562499999999999 -0.0026 0.015234374999999998" size="0.0006875 0.004 0.001171875" rgba="0.6384313725490196 0.6384313725490196 0.6384313725490196 1"/>
+                                <geom class="pad" pos="-0.0061874999999999986 -0.0026 0.015234374999999998" size="0.0006875 0.004 0.001171875" rgba="0.6388235294117647 0.6388235294117647 0.6388235294117647 1"/>
+                                <geom class="pad" pos="-0.004812499999999999 -0.0026 0.015234374999999998" size="0.0006875 0.004 0.001171875" rgba="0.6392156862745098 0.6392156862745098 0.6392156862745098 1"/>
+                                <geom class="pad" pos="-0.0034374999999999996 -0.0026 0.015234374999999998" size="0.0006875 0.004 0.001171875" rgba="0.6396078431372549 0.6396078431372549 0.6396078431372549 1"/>
+                                <geom class="pad" pos="-0.0020624999999999984 -0.0026 0.015234374999999998" size="0.0006875 0.004 0.001171875" rgba="0.64 0.64 0.64 1"/>
+                                <geom class="pad" pos="-0.0006874999999999989 -0.0026 0.015234374999999998" size="0.0006875 0.004 0.001171875" rgba="0.6403921568627451 0.6403921568627451 0.6403921568627451 1"/>
+                                <geom class="pad" pos="0.0006875000000000006 -0.0026 0.015234374999999998" size="0.0006875 0.004 0.001171875" rgba="0.6407843137254902 0.6407843137254902 0.6407843137254902 1"/>
+                                <geom class="pad" pos="0.0020625 -0.0026 0.015234374999999998" size="0.0006875 0.004 0.001171875" rgba="0.6411764705882352 0.6411764705882352 0.6411764705882352 1"/>
+                                <geom class="pad" pos="0.0034374999999999996 -0.0026 0.015234374999999998" size="0.0006875 0.004 0.001171875" rgba="0.6415686274509804 0.6415686274509804 0.6415686274509804 1"/>
+                                <geom class="pad" pos="0.004812500000000001 -0.0026 0.015234374999999998" size="0.0006875 0.004 0.001171875" rgba="0.6419607843137255 0.6419607843137255 0.6419607843137255 1"/>
+                                <geom class="pad" pos="0.006187500000000002 -0.0026 0.015234374999999998" size="0.0006875 0.004 0.001171875" rgba="0.6423529411764706 0.6423529411764706 0.6423529411764706 1"/>
+                                <geom class="pad" pos="0.0075625 -0.0026 0.015234374999999998" size="0.0006875 0.004 0.001171875" rgba="0.6427450980392156 0.6427450980392156 0.6427450980392156 1"/>
+                                <geom class="pad" pos="0.008937500000000001 -0.0026 0.015234374999999998" size="0.0006875 0.004 0.001171875" rgba="0.6431372549019607 0.6431372549019607 0.6431372549019607 1"/>
+                                <geom class="pad" pos="0.010312499999999999 -0.0026 0.015234374999999998" size="0.0006875 0.004 0.001171875" rgba="0.6435294117647059 0.6435294117647059 0.6435294117647059 1"/>
+                                <geom class="pad" pos="-0.010312499999999999 -0.0026 0.017578125" size="0.0006875 0.004 0.001171875" rgba="0.643921568627451 0.643921568627451 0.643921568627451 1"/>
+                                <geom class="pad" pos="-0.0089375 -0.0026 0.017578125" size="0.0006875 0.004 0.001171875" rgba="0.644313725490196 0.644313725490196 0.644313725490196 1"/>
+                                <geom class="pad" pos="-0.007562499999999999 -0.0026 0.017578125" size="0.0006875 0.004 0.001171875" rgba="0.6447058823529411 0.6447058823529411 0.6447058823529411 1"/>
+                                <geom class="pad" pos="-0.0061874999999999986 -0.0026 0.017578125" size="0.0006875 0.004 0.001171875" rgba="0.6450980392156862 0.6450980392156862 0.6450980392156862 1"/>
+                                <geom class="pad" pos="-0.004812499999999999 -0.0026 0.017578125" size="0.0006875 0.004 0.001171875" rgba="0.6454901960784314 0.6454901960784314 0.6454901960784314 1"/>
+                                <geom class="pad" pos="-0.0034374999999999996 -0.0026 0.017578125" size="0.0006875 0.004 0.001171875" rgba="0.6458823529411765 0.6458823529411765 0.6458823529411765 1"/>
+                                <geom class="pad" pos="-0.0020624999999999984 -0.0026 0.017578125" size="0.0006875 0.004 0.001171875" rgba="0.6462745098039215 0.6462745098039215 0.6462745098039215 1"/>
+                                <geom class="pad" pos="-0.0006874999999999989 -0.0026 0.017578125" size="0.0006875 0.004 0.001171875" rgba="0.6466666666666666 0.6466666666666666 0.6466666666666666 1"/>
+                                <geom class="pad" pos="0.0006875000000000006 -0.0026 0.017578125" size="0.0006875 0.004 0.001171875" rgba="0.6470588235294117 0.6470588235294117 0.6470588235294117 1"/>
+                                <geom class="pad" pos="0.0020625 -0.0026 0.017578125" size="0.0006875 0.004 0.001171875" rgba="0.6474509803921569 0.6474509803921569 0.6474509803921569 1"/>
+                                <geom class="pad" pos="0.0034374999999999996 -0.0026 0.017578125" size="0.0006875 0.004 0.001171875" rgba="0.647843137254902 0.647843137254902 0.647843137254902 1"/>
+                                <geom class="pad" pos="0.004812500000000001 -0.0026 0.017578125" size="0.0006875 0.004 0.001171875" rgba="0.648235294117647 0.648235294117647 0.648235294117647 1"/>
+                                <geom class="pad" pos="0.006187500000000002 -0.0026 0.017578125" size="0.0006875 0.004 0.001171875" rgba="0.6486274509803921 0.6486274509803921 0.6486274509803921 1"/>
+                                <geom class="pad" pos="0.0075625 -0.0026 0.017578125" size="0.0006875 0.004 0.001171875" rgba="0.6490196078431373 0.6490196078431373 0.6490196078431373 1"/>
+                                <geom class="pad" pos="0.008937500000000001 -0.0026 0.017578125" size="0.0006875 0.004 0.001171875" rgba="0.6494117647058824 0.6494117647058824 0.6494117647058824 1"/>
+                                <geom class="pad" pos="0.010312499999999999 -0.0026 0.017578125" size="0.0006875 0.004 0.001171875" rgba="0.6498039215686274 0.6498039215686274 0.6498039215686274 1"/>
+                                <geom class="pad" pos="-0.010312499999999999 -0.0026 0.019921875" size="0.0006875 0.004 0.001171875" rgba="0.6501960784313725 0.6501960784313725 0.6501960784313725 1"/>
+                                <geom class="pad" pos="-0.0089375 -0.0026 0.019921875" size="0.0006875 0.004 0.001171875" rgba="0.6505882352941176 0.6505882352941176 0.6505882352941176 1"/>
+                                <geom class="pad" pos="-0.007562499999999999 -0.0026 0.019921875" size="0.0006875 0.004 0.001171875" rgba="0.6509803921568628 0.6509803921568628 0.6509803921568628 1"/>
+                                <geom class="pad" pos="-0.0061874999999999986 -0.0026 0.019921875" size="0.0006875 0.004 0.001171875" rgba="0.6513725490196078 0.6513725490196078 0.6513725490196078 1"/>
+                                <geom class="pad" pos="-0.004812499999999999 -0.0026 0.019921875" size="0.0006875 0.004 0.001171875" rgba="0.6517647058823529 0.6517647058823529 0.6517647058823529 1"/>
+                                <geom class="pad" pos="-0.0034374999999999996 -0.0026 0.019921875" size="0.0006875 0.004 0.001171875" rgba="0.652156862745098 0.652156862745098 0.652156862745098 1"/>
+                                <geom class="pad" pos="-0.0020624999999999984 -0.0026 0.019921875" size="0.0006875 0.004 0.001171875" rgba="0.6525490196078432 0.6525490196078432 0.6525490196078432 1"/>
+                                <geom class="pad" pos="-0.0006874999999999989 -0.0026 0.019921875" size="0.0006875 0.004 0.001171875" rgba="0.6529411764705882 0.6529411764705882 0.6529411764705882 1"/>
+                                <geom class="pad" pos="0.0006875000000000006 -0.0026 0.019921875" size="0.0006875 0.004 0.001171875" rgba="0.6533333333333333 0.6533333333333333 0.6533333333333333 1"/>
+                                <geom class="pad" pos="0.0020625 -0.0026 0.019921875" size="0.0006875 0.004 0.001171875" rgba="0.6537254901960784 0.6537254901960784 0.6537254901960784 1"/>
+                                <geom class="pad" pos="0.0034374999999999996 -0.0026 0.019921875" size="0.0006875 0.004 0.001171875" rgba="0.6541176470588235 0.6541176470588235 0.6541176470588235 1"/>
+                                <geom class="pad" pos="0.004812500000000001 -0.0026 0.019921875" size="0.0006875 0.004 0.001171875" rgba="0.6545098039215687 0.6545098039215687 0.6545098039215687 1"/>
+                                <geom class="pad" pos="0.006187500000000002 -0.0026 0.019921875" size="0.0006875 0.004 0.001171875" rgba="0.6549019607843137 0.6549019607843137 0.6549019607843137 1"/>
+                                <geom class="pad" pos="0.0075625 -0.0026 0.019921875" size="0.0006875 0.004 0.001171875" rgba="0.6552941176470588 0.6552941176470588 0.6552941176470588 1"/>
+                                <geom class="pad" pos="0.008937500000000001 -0.0026 0.019921875" size="0.0006875 0.004 0.001171875" rgba="0.6556862745098039 0.6556862745098039 0.6556862745098039 1"/>
+                                <geom class="pad" pos="0.010312499999999999 -0.0026 0.019921875" size="0.0006875 0.004 0.001171875" rgba="0.656078431372549 0.656078431372549 0.656078431372549 1"/>
+                                <geom class="pad" pos="-0.010312499999999999 -0.0026 0.022265624999999997" size="0.0006875 0.004 0.001171875" rgba="0.6564705882352941 0.6564705882352941 0.6564705882352941 1"/>
+                                <geom class="pad" pos="-0.0089375 -0.0026 0.022265624999999997" size="0.0006875 0.004 0.001171875" rgba="0.6568627450980392 0.6568627450980392 0.6568627450980392 1"/>
+                                <geom class="pad" pos="-0.007562499999999999 -0.0026 0.022265624999999997" size="0.0006875 0.004 0.001171875" rgba="0.6572549019607843 0.6572549019607843 0.6572549019607843 1"/>
+                                <geom class="pad" pos="-0.0061874999999999986 -0.0026 0.022265624999999997" size="0.0006875 0.004 0.001171875" rgba="0.6576470588235294 0.6576470588235294 0.6576470588235294 1"/>
+                                <geom class="pad" pos="-0.004812499999999999 -0.0026 0.022265624999999997" size="0.0006875 0.004 0.001171875" rgba="0.6580392156862744 0.6580392156862744 0.6580392156862744 1"/>
+                                <geom class="pad" pos="-0.0034374999999999996 -0.0026 0.022265624999999997" size="0.0006875 0.004 0.001171875" rgba="0.6584313725490196 0.6584313725490196 0.6584313725490196 1"/>
+                                <geom class="pad" pos="-0.0020624999999999984 -0.0026 0.022265624999999997" size="0.0006875 0.004 0.001171875" rgba="0.6588235294117647 0.6588235294117647 0.6588235294117647 1"/>
+                                <geom class="pad" pos="-0.0006874999999999989 -0.0026 0.022265624999999997" size="0.0006875 0.004 0.001171875" rgba="0.6592156862745098 0.6592156862745098 0.6592156862745098 1"/>
+                                <geom class="pad" pos="0.0006875000000000006 -0.0026 0.022265624999999997" size="0.0006875 0.004 0.001171875" rgba="0.6596078431372548 0.6596078431372548 0.6596078431372548 1"/>
+                                <geom class="pad" pos="0.0020625 -0.0026 0.022265624999999997" size="0.0006875 0.004 0.001171875" rgba="0.66 0.66 0.66 1"/>
+                                <geom class="pad" pos="0.0034374999999999996 -0.0026 0.022265624999999997" size="0.0006875 0.004 0.001171875" rgba="0.6603921568627451 0.6603921568627451 0.6603921568627451 1"/>
+                                <geom class="pad" pos="0.004812500000000001 -0.0026 0.022265624999999997" size="0.0006875 0.004 0.001171875" rgba="0.6607843137254902 0.6607843137254902 0.6607843137254902 1"/>
+                                <geom class="pad" pos="0.006187500000000002 -0.0026 0.022265624999999997" size="0.0006875 0.004 0.001171875" rgba="0.6611764705882353 0.6611764705882353 0.6611764705882353 1"/>
+                                <geom class="pad" pos="0.0075625 -0.0026 0.022265624999999997" size="0.0006875 0.004 0.001171875" rgba="0.6615686274509803 0.6615686274509803 0.6615686274509803 1"/>
+                                <geom class="pad" pos="0.008937500000000001 -0.0026 0.022265624999999997" size="0.0006875 0.004 0.001171875" rgba="0.6619607843137255 0.6619607843137255 0.6619607843137255 1"/>
+                                <geom class="pad" pos="0.010312499999999999 -0.0026 0.022265624999999997" size="0.0006875 0.004 0.001171875" rgba="0.6623529411764706 0.6623529411764706 0.6623529411764706 1"/>
+                                <geom class="pad" pos="-0.010312499999999999 -0.0026 0.024609375" size="0.0006875 0.004 0.001171875" rgba="0.6627450980392157 0.6627450980392157 0.6627450980392157 1"/>
+                                <geom class="pad" pos="-0.0089375 -0.0026 0.024609375" size="0.0006875 0.004 0.001171875" rgba="0.6631372549019607 0.6631372549019607 0.6631372549019607 1"/>
+                                <geom class="pad" pos="-0.007562499999999999 -0.0026 0.024609375" size="0.0006875 0.004 0.001171875" rgba="0.6635294117647058 0.6635294117647058 0.6635294117647058 1"/>
+                                <geom class="pad" pos="-0.0061874999999999986 -0.0026 0.024609375" size="0.0006875 0.004 0.001171875" rgba="0.663921568627451 0.663921568627451 0.663921568627451 1"/>
+                                <geom class="pad" pos="-0.004812499999999999 -0.0026 0.024609375" size="0.0006875 0.004 0.001171875" rgba="0.6643137254901961 0.6643137254901961 0.6643137254901961 1"/>
+                                <geom class="pad" pos="-0.0034374999999999996 -0.0026 0.024609375" size="0.0006875 0.004 0.001171875" rgba="0.6647058823529411 0.6647058823529411 0.6647058823529411 1"/>
+                                <geom class="pad" pos="-0.0020624999999999984 -0.0026 0.024609375" size="0.0006875 0.004 0.001171875" rgba="0.6650980392156862 0.6650980392156862 0.6650980392156862 1"/>
+                                <geom class="pad" pos="-0.0006874999999999989 -0.0026 0.024609375" size="0.0006875 0.004 0.001171875" rgba="0.6654901960784314 0.6654901960784314 0.6654901960784314 1"/>
+                                <geom class="pad" pos="0.0006875000000000006 -0.0026 0.024609375" size="0.0006875 0.004 0.001171875" rgba="0.6658823529411765 0.6658823529411765 0.6658823529411765 1"/>
+                                <geom class="pad" pos="0.0020625 -0.0026 0.024609375" size="0.0006875 0.004 0.001171875" rgba="0.6662745098039216 0.6662745098039216 0.6662745098039216 1"/>
+                                <geom class="pad" pos="0.0034374999999999996 -0.0026 0.024609375" size="0.0006875 0.004 0.001171875" rgba="0.6666666666666666 0.6666666666666666 0.6666666666666666 1"/>
+                                <geom class="pad" pos="0.004812500000000001 -0.0026 0.024609375" size="0.0006875 0.004 0.001171875" rgba="0.6670588235294117 0.6670588235294117 0.6670588235294117 1"/>
+                                <geom class="pad" pos="0.006187500000000002 -0.0026 0.024609375" size="0.0006875 0.004 0.001171875" rgba="0.6674509803921569 0.6674509803921569 0.6674509803921569 1"/>
+                                <geom class="pad" pos="0.0075625 -0.0026 0.024609375" size="0.0006875 0.004 0.001171875" rgba="0.667843137254902 0.667843137254902 0.667843137254902 1"/>
+                                <geom class="pad" pos="0.008937500000000001 -0.0026 0.024609375" size="0.0006875 0.004 0.001171875" rgba="0.668235294117647 0.668235294117647 0.668235294117647 1"/>
+                                <geom class="pad" pos="0.010312499999999999 -0.0026 0.024609375" size="0.0006875 0.004 0.001171875" rgba="0.6686274509803921 0.6686274509803921 0.6686274509803921 1"/>
+                                <geom class="pad" pos="-0.010312499999999999 -0.0026 0.026953124999999998" size="0.0006875 0.004 0.001171875" rgba="0.6690196078431372 0.6690196078431372 0.6690196078431372 1"/>
+                                <geom class="pad" pos="-0.0089375 -0.0026 0.026953124999999998" size="0.0006875 0.004 0.001171875" rgba="0.6694117647058824 0.6694117647058824 0.6694117647058824 1"/>
+                                <geom class="pad" pos="-0.007562499999999999 -0.0026 0.026953124999999998" size="0.0006875 0.004 0.001171875" rgba="0.6698039215686274 0.6698039215686274 0.6698039215686274 1"/>
+                                <geom class="pad" pos="-0.0061874999999999986 -0.0026 0.026953124999999998" size="0.0006875 0.004 0.001171875" rgba="0.6701960784313725 0.6701960784313725 0.6701960784313725 1"/>
+                                <geom class="pad" pos="-0.004812499999999999 -0.0026 0.026953124999999998" size="0.0006875 0.004 0.001171875" rgba="0.6705882352941176 0.6705882352941176 0.6705882352941176 1"/>
+                                <geom class="pad" pos="-0.0034374999999999996 -0.0026 0.026953124999999998" size="0.0006875 0.004 0.001171875" rgba="0.6709803921568627 0.6709803921568627 0.6709803921568627 1"/>
+                                <geom class="pad" pos="-0.0020624999999999984 -0.0026 0.026953124999999998" size="0.0006875 0.004 0.001171875" rgba="0.6713725490196079 0.6713725490196079 0.6713725490196079 1"/>
+                                <geom class="pad" pos="-0.0006874999999999989 -0.0026 0.026953124999999998" size="0.0006875 0.004 0.001171875" rgba="0.6717647058823529 0.6717647058823529 0.6717647058823529 1"/>
+                                <geom class="pad" pos="0.0006875000000000006 -0.0026 0.026953124999999998" size="0.0006875 0.004 0.001171875" rgba="0.672156862745098 0.672156862745098 0.672156862745098 1"/>
+                                <geom class="pad" pos="0.0020625 -0.0026 0.026953124999999998" size="0.0006875 0.004 0.001171875" rgba="0.6725490196078431 0.6725490196078431 0.6725490196078431 1"/>
+                                <geom class="pad" pos="0.0034374999999999996 -0.0026 0.026953124999999998" size="0.0006875 0.004 0.001171875" rgba="0.6729411764705883 0.6729411764705883 0.6729411764705883 1"/>
+                                <geom class="pad" pos="0.004812500000000001 -0.0026 0.026953124999999998" size="0.0006875 0.004 0.001171875" rgba="0.6733333333333333 0.6733333333333333 0.6733333333333333 1"/>
+                                <geom class="pad" pos="0.006187500000000002 -0.0026 0.026953124999999998" size="0.0006875 0.004 0.001171875" rgba="0.6737254901960784 0.6737254901960784 0.6737254901960784 1"/>
+                                <geom class="pad" pos="0.0075625 -0.0026 0.026953124999999998" size="0.0006875 0.004 0.001171875" rgba="0.6741176470588235 0.6741176470588235 0.6741176470588235 1"/>
+                                <geom class="pad" pos="0.008937500000000001 -0.0026 0.026953124999999998" size="0.0006875 0.004 0.001171875" rgba="0.6745098039215686 0.6745098039215686 0.6745098039215686 1"/>
+                                <geom class="pad" pos="0.010312499999999999 -0.0026 0.026953124999999998" size="0.0006875 0.004 0.001171875" rgba="0.6749019607843137 0.6749019607843137 0.6749019607843137 1"/>
+                                <geom class="pad" pos="-0.010312499999999999 -0.0026 0.029296874999999997" size="0.0006875 0.004 0.001171875" rgba="0.6752941176470588 0.6752941176470588 0.6752941176470588 1"/>
+                                <geom class="pad" pos="-0.0089375 -0.0026 0.029296874999999997" size="0.0006875 0.004 0.001171875" rgba="0.6756862745098039 0.6756862745098039 0.6756862745098039 1"/>
+                                <geom class="pad" pos="-0.007562499999999999 -0.0026 0.029296874999999997" size="0.0006875 0.004 0.001171875" rgba="0.676078431372549 0.676078431372549 0.676078431372549 1"/>
+                                <geom class="pad" pos="-0.0061874999999999986 -0.0026 0.029296874999999997" size="0.0006875 0.004 0.001171875" rgba="0.6764705882352942 0.6764705882352942 0.6764705882352942 1"/>
+                                <geom class="pad" pos="-0.004812499999999999 -0.0026 0.029296874999999997" size="0.0006875 0.004 0.001171875" rgba="0.6768627450980392 0.6768627450980392 0.6768627450980392 1"/>
+                                <geom class="pad" pos="-0.0034374999999999996 -0.0026 0.029296874999999997" size="0.0006875 0.004 0.001171875" rgba="0.6772549019607843 0.6772549019607843 0.6772549019607843 1"/>
+                                <geom class="pad" pos="-0.0020624999999999984 -0.0026 0.029296874999999997" size="0.0006875 0.004 0.001171875" rgba="0.6776470588235294 0.6776470588235294 0.6776470588235294 1"/>
+                                <geom class="pad" pos="-0.0006874999999999989 -0.0026 0.029296874999999997" size="0.0006875 0.004 0.001171875" rgba="0.6780392156862745 0.6780392156862745 0.6780392156862745 1"/>
+                                <geom class="pad" pos="0.0006875000000000006 -0.0026 0.029296874999999997" size="0.0006875 0.004 0.001171875" rgba="0.6784313725490196 0.6784313725490196 0.6784313725490196 1"/>
+                                <geom class="pad" pos="0.0020625 -0.0026 0.029296874999999997" size="0.0006875 0.004 0.001171875" rgba="0.6788235294117647 0.6788235294117647 0.6788235294117647 1"/>
+                                <geom class="pad" pos="0.0034374999999999996 -0.0026 0.029296874999999997" size="0.0006875 0.004 0.001171875" rgba="0.6792156862745098 0.6792156862745098 0.6792156862745098 1"/>
+                                <geom class="pad" pos="0.004812500000000001 -0.0026 0.029296874999999997" size="0.0006875 0.004 0.001171875" rgba="0.6796078431372549 0.6796078431372549 0.6796078431372549 1"/>
+                                <geom class="pad" pos="0.006187500000000002 -0.0026 0.029296874999999997" size="0.0006875 0.004 0.001171875" rgba="0.6799999999999999 0.6799999999999999 0.6799999999999999 1"/>
+                                <geom class="pad" pos="0.0075625 -0.0026 0.029296874999999997" size="0.0006875 0.004 0.001171875" rgba="0.6803921568627451 0.6803921568627451 0.6803921568627451 1"/>
+                                <geom class="pad" pos="0.008937500000000001 -0.0026 0.029296874999999997" size="0.0006875 0.004 0.001171875" rgba="0.6807843137254902 0.6807843137254902 0.6807843137254902 1"/>
+                                <geom class="pad" pos="0.010312499999999999 -0.0026 0.029296874999999997" size="0.0006875 0.004 0.001171875" rgba="0.6811764705882353 0.6811764705882353 0.6811764705882353 1"/>
+                                <geom class="pad" pos="-0.010312499999999999 -0.0026 0.031640625" size="0.0006875 0.004 0.001171875" rgba="0.6815686274509803 0.6815686274509803 0.6815686274509803 1"/>
+                                <geom class="pad" pos="-0.0089375 -0.0026 0.031640625" size="0.0006875 0.004 0.001171875" rgba="0.6819607843137254 0.6819607843137254 0.6819607843137254 1"/>
+                                <geom class="pad" pos="-0.007562499999999999 -0.0026 0.031640625" size="0.0006875 0.004 0.001171875" rgba="0.6823529411764706 0.6823529411764706 0.6823529411764706 1"/>
+                                <geom class="pad" pos="-0.0061874999999999986 -0.0026 0.031640625" size="0.0006875 0.004 0.001171875" rgba="0.6827450980392157 0.6827450980392157 0.6827450980392157 1"/>
+                                <geom class="pad" pos="-0.004812499999999999 -0.0026 0.031640625" size="0.0006875 0.004 0.001171875" rgba="0.6831372549019608 0.6831372549019608 0.6831372549019608 1"/>
+                                <geom class="pad" pos="-0.0034374999999999996 -0.0026 0.031640625" size="0.0006875 0.004 0.001171875" rgba="0.6835294117647058 0.6835294117647058 0.6835294117647058 1"/>
+                                <geom class="pad" pos="-0.0020624999999999984 -0.0026 0.031640625" size="0.0006875 0.004 0.001171875" rgba="0.6839215686274509 0.6839215686274509 0.6839215686274509 1"/>
+                                <geom class="pad" pos="-0.0006874999999999989 -0.0026 0.031640625" size="0.0006875 0.004 0.001171875" rgba="0.6843137254901961 0.6843137254901961 0.6843137254901961 1"/>
+                                <geom class="pad" pos="0.0006875000000000006 -0.0026 0.031640625" size="0.0006875 0.004 0.001171875" rgba="0.6847058823529412 0.6847058823529412 0.6847058823529412 1"/>
+                                <geom class="pad" pos="0.0020625 -0.0026 0.031640625" size="0.0006875 0.004 0.001171875" rgba="0.6850980392156862 0.6850980392156862 0.6850980392156862 1"/>
+                                <geom class="pad" pos="0.0034374999999999996 -0.0026 0.031640625" size="0.0006875 0.004 0.001171875" rgba="0.6854901960784313 0.6854901960784313 0.6854901960784313 1"/>
+                                <geom class="pad" pos="0.004812500000000001 -0.0026 0.031640625" size="0.0006875 0.004 0.001171875" rgba="0.6858823529411765 0.6858823529411765 0.6858823529411765 1"/>
+                                <geom class="pad" pos="0.006187500000000002 -0.0026 0.031640625" size="0.0006875 0.004 0.001171875" rgba="0.6862745098039216 0.6862745098039216 0.6862745098039216 1"/>
+                                <geom class="pad" pos="0.0075625 -0.0026 0.031640625" size="0.0006875 0.004 0.001171875" rgba="0.6866666666666666 0.6866666666666666 0.6866666666666666 1"/>
+                                <geom class="pad" pos="0.008937500000000001 -0.0026 0.031640625" size="0.0006875 0.004 0.001171875" rgba="0.6870588235294117 0.6870588235294117 0.6870588235294117 1"/>
+                                <geom class="pad" pos="0.010312499999999999 -0.0026 0.031640625" size="0.0006875 0.004 0.001171875" rgba="0.6874509803921568 0.6874509803921568 0.6874509803921568 1"/>
+                                <geom class="pad" pos="-0.010312499999999999 -0.0026 0.033984375000000004" size="0.0006875 0.004 0.001171875" rgba="0.687843137254902 0.687843137254902 0.687843137254902 1"/>
+                                <geom class="pad" pos="-0.0089375 -0.0026 0.033984375000000004" size="0.0006875 0.004 0.001171875" rgba="0.6882352941176471 0.6882352941176471 0.6882352941176471 1"/>
+                                <geom class="pad" pos="-0.007562499999999999 -0.0026 0.033984375000000004" size="0.0006875 0.004 0.001171875" rgba="0.6886274509803921 0.6886274509803921 0.6886274509803921 1"/>
+                                <geom class="pad" pos="-0.0061874999999999986 -0.0026 0.033984375000000004" size="0.0006875 0.004 0.001171875" rgba="0.6890196078431372 0.6890196078431372 0.6890196078431372 1"/>
+                                <geom class="pad" pos="-0.004812499999999999 -0.0026 0.033984375000000004" size="0.0006875 0.004 0.001171875" rgba="0.6894117647058824 0.6894117647058824 0.6894117647058824 1"/>
+                                <geom class="pad" pos="-0.0034374999999999996 -0.0026 0.033984375000000004" size="0.0006875 0.004 0.001171875" rgba="0.6898039215686275 0.6898039215686275 0.6898039215686275 1"/>
+                                <geom class="pad" pos="-0.0020624999999999984 -0.0026 0.033984375000000004" size="0.0006875 0.004 0.001171875" rgba="0.6901960784313725 0.6901960784313725 0.6901960784313725 1"/>
+                                <geom class="pad" pos="-0.0006874999999999989 -0.0026 0.033984375000000004" size="0.0006875 0.004 0.001171875" rgba="0.6905882352941176 0.6905882352941176 0.6905882352941176 1"/>
+                                <geom class="pad" pos="0.0006875000000000006 -0.0026 0.033984375000000004" size="0.0006875 0.004 0.001171875" rgba="0.6909803921568627 0.6909803921568627 0.6909803921568627 1"/>
+                                <geom class="pad" pos="0.0020625 -0.0026 0.033984375000000004" size="0.0006875 0.004 0.001171875" rgba="0.6913725490196079 0.6913725490196079 0.6913725490196079 1"/>
+                                <geom class="pad" pos="0.0034374999999999996 -0.0026 0.033984375000000004" size="0.0006875 0.004 0.001171875" rgba="0.691764705882353 0.691764705882353 0.691764705882353 1"/>
+                                <geom class="pad" pos="0.004812500000000001 -0.0026 0.033984375000000004" size="0.0006875 0.004 0.001171875" rgba="0.692156862745098 0.692156862745098 0.692156862745098 1"/>
+                                <geom class="pad" pos="0.006187500000000002 -0.0026 0.033984375000000004" size="0.0006875 0.004 0.001171875" rgba="0.6925490196078431 0.6925490196078431 0.6925490196078431 1"/>
+                                <geom class="pad" pos="0.0075625 -0.0026 0.033984375000000004" size="0.0006875 0.004 0.001171875" rgba="0.6929411764705882 0.6929411764705882 0.6929411764705882 1"/>
+                                <geom class="pad" pos="0.008937500000000001 -0.0026 0.033984375000000004" size="0.0006875 0.004 0.001171875" rgba="0.6933333333333334 0.6933333333333334 0.6933333333333334 1"/>
+                                <geom class="pad" pos="0.010312499999999999 -0.0026 0.033984375000000004" size="0.0006875 0.004 0.001171875" rgba="0.6937254901960784 0.6937254901960784 0.6937254901960784 1"/>
+                                <geom class="pad" pos="-0.010312499999999999 -0.0026 0.036328125" size="0.0006875 0.004 0.001171875" rgba="0.6941176470588235 0.6941176470588235 0.6941176470588235 1"/>
+                                <geom class="pad" pos="-0.0089375 -0.0026 0.036328125" size="0.0006875 0.004 0.001171875" rgba="0.6945098039215686 0.6945098039215686 0.6945098039215686 1"/>
+                                <geom class="pad" pos="-0.007562499999999999 -0.0026 0.036328125" size="0.0006875 0.004 0.001171875" rgba="0.6949019607843137 0.6949019607843137 0.6949019607843137 1"/>
+                                <geom class="pad" pos="-0.0061874999999999986 -0.0026 0.036328125" size="0.0006875 0.004 0.001171875" rgba="0.6952941176470588 0.6952941176470588 0.6952941176470588 1"/>
+                                <geom class="pad" pos="-0.004812499999999999 -0.0026 0.036328125" size="0.0006875 0.004 0.001171875" rgba="0.6956862745098039 0.6956862745098039 0.6956862745098039 1"/>
+                                <geom class="pad" pos="-0.0034374999999999996 -0.0026 0.036328125" size="0.0006875 0.004 0.001171875" rgba="0.696078431372549 0.696078431372549 0.696078431372549 1"/>
+                                <geom class="pad" pos="-0.0020624999999999984 -0.0026 0.036328125" size="0.0006875 0.004 0.001171875" rgba="0.6964705882352941 0.6964705882352941 0.6964705882352941 1"/>
+                                <geom class="pad" pos="-0.0006874999999999989 -0.0026 0.036328125" size="0.0006875 0.004 0.001171875" rgba="0.6968627450980392 0.6968627450980392 0.6968627450980392 1"/>
+                                <geom class="pad" pos="0.0006875000000000006 -0.0026 0.036328125" size="0.0006875 0.004 0.001171875" rgba="0.6972549019607843 0.6972549019607843 0.6972549019607843 1"/>
+                                <geom class="pad" pos="0.0020625 -0.0026 0.036328125" size="0.0006875 0.004 0.001171875" rgba="0.6976470588235294 0.6976470588235294 0.6976470588235294 1"/>
+                                <geom class="pad" pos="0.0034374999999999996 -0.0026 0.036328125" size="0.0006875 0.004 0.001171875" rgba="0.6980392156862745 0.6980392156862745 0.6980392156862745 1"/>
+                                <geom class="pad" pos="0.004812500000000001 -0.0026 0.036328125" size="0.0006875 0.004 0.001171875" rgba="0.6984313725490195 0.6984313725490195 0.6984313725490195 1"/>
+                                <geom class="pad" pos="0.006187500000000002 -0.0026 0.036328125" size="0.0006875 0.004 0.001171875" rgba="0.6988235294117647 0.6988235294117647 0.6988235294117647 1"/>
+                                <geom class="pad" pos="0.0075625 -0.0026 0.036328125" size="0.0006875 0.004 0.001171875" rgba="0.6992156862745098 0.6992156862745098 0.6992156862745098 1"/>
+                                <geom class="pad" pos="0.008937500000000001 -0.0026 0.036328125" size="0.0006875 0.004 0.001171875" rgba="0.6996078431372549 0.6996078431372549 0.6996078431372549 1"/>
+                                <geom class="pad" pos="0.010312499999999999 -0.0026 0.036328125" size="0.0006875 0.004 0.001171875" rgba="0.7 0.7 0.7 1"/>
+                                <geom class="visual" mesh="pad"/>
+                                <body name="left_silicone_pad" gravcomp="1">
+                                <geom class="visual" mesh="silicone_pad" material="black" group="4"/>
+                                <site name="finger_left" pos="0 -0.007 0.018" zaxis="1 0 0" rgba="1 0 0 0" group="5"/>
+                                <camera name="tactile_camera_left" pos="0 0.018 0.018" zaxis="0 1 0" fovy="60"/>
+                                </body>
+                            </body>
+                            </body>
+                          </body>
+                        </body>
+                      </body>
+                    </body>
+                  </body>
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+    
+    <body name="walls" pos="1.1556706037103839 0.08315364805766517 0.75">
+      <geom name="wall1_visual" class="visual" priority="1" friction="0.3" solref="0.007" mesh="horizontal_wall1"/>
+      <geom name="wall1_collision" class="collision" priority="1" friction="0.3" solref="0.007" mesh="horizontal_wall1"/>
+      <geom name="wall2_visual" class="visual" priority="1" friction="0.3" solref="0.007" mesh="horizontal_wall2"/>
+      <geom name="wall2_collision" class="collision" priority="1" friction="0.3" solref="0.007" mesh="horizontal_wall2"/>
+      <geom name="wall3_visual" class="visual" priority="1" friction="0.3" solref="0.007" mesh="horizontal_wall3"/>
+      <geom name="wall3_collision" class="collision" priority="1" friction="0.3" solref="0.007" mesh="horizontal_wall3"/>
+      <geom name="wall4_visual" class="visual" priority="1" friction="0.3" solref="0.007" mesh="horizontal_wall4"/>
+      <geom name="wall4_collision" class="collision" priority="1" friction="0.3" solref="0.007" mesh="horizontal_wall4"/>
+    </body>
+    <body name="object" pos="1.2318545714715268 -0.13852424107877925 0.75" axisangle="0 0 1 0.0">
+      <joint type="free" name="obj_jnt"/>
+      <geom class="visual" name="peg_visual" mesh="horizontal" rgba="0.8 0.8 0.1 1" friction="0.8"/>
+      <geom class="collision" name="peg_collision" mesh="horizontal" friction="0.8"/>
+      <geom class="visual" name="holder_visual" mesh="holder2" rgba="0.8 0.8 0.1 1" friction="0.5"/>
+      <geom class="collision" name="holder_collision" mesh="holder2" friction="0.5"/>
+    </body>
+  
+  </worldbody>
+  <tendon>
+    <fixed name="split">
+      <joint joint="right_driver_joint" coef="0.5"/>
+      <joint joint="left_driver_joint" coef="0.5"/>
+    </fixed>
+  </tendon>
+  <equality>
+    <connect anchor="0 0 0" body1="right_follower" body2="right_coupler" solimp="0.95 0.99 0.001" solref="0.005 1"/>
+    <connect anchor="0 0 0" body1="left_follower" body2="left_coupler" solimp="0.95 0.99 0.001" solref="0.005 1"/>
+    <joint joint1="right_driver_joint" joint2="left_driver_joint" polycoef="0 1 0 0 0" solimp="0.95 0.99 0.001" solref="0.005 1"/>
+  </equality>
+  <actuator>
+    <general name="robot0_torq_j1" joint="robot0_shoulder_pan_joint" ctrllimited="true" ctrlrange="-150 150"/>
+    <general name="robot0_torq_j2" joint="robot0_shoulder_lift_joint" ctrllimited="true" ctrlrange="-150 150"/>
+    <general name="robot0_torq_j3" joint="robot0_elbow_joint" ctrllimited="true" ctrlrange="-150 150"/>
+    <general name="robot0_torq_j4" joint="robot0_wrist_1_joint" ctrllimited="true" ctrlrange="-28 28"/>
+    <general name="robot0_torq_j5" joint="robot0_wrist_2_joint" ctrllimited="true" ctrlrange="-28 28"/>
+    <general name="robot0_torq_j6" joint="robot0_wrist_3_joint" ctrllimited="true" ctrlrange="-28 28"/>
+    <general class="2f85" name="fingers_actuator" tendon="split" forcerange="-10 120" ctrlrange="-1 1" gainprm="40 0 0" biasprm="40 -100 -10"/>
+  </actuator>
+  <keyframe>
+    <key qpos="0 -1.57 0 0 0 0 0 0 0 0 0 0 0 0  1.2318545714715268 -0.13852424107877925 0.75 1 0 0 0"/>
+  </keyframe>
+</mujoco>
